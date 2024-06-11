@@ -1,4 +1,4 @@
-# Retiring `id_workflow``
+# Retiring `id_workflow`
 
 ```bash
 #!/bin/zsh
