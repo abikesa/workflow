@@ -382,7 +382,42 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="retiring-id-workflow">
 <h1>Retiring `id_workflow``<a class="headerlink" href="#retiring-id-workflow" title="Link to this heading">#</a></h1>
-<p>It grew too big and oft time did fail.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/zsh</span>
+
+<span class="c1"># Define the environment directory; setup_environement.sh</span>
+<span class="nv">ENV_DIR</span><span class="o">=</span><span class="s2">&quot;myenv&quot;</span>
+
+<span class="c1"># Remove the existing environment if it exists</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ENV_DIR</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ENV_DIR</span><span class="s2">&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1"># Create a new virtual environment</span>
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span><span class="nv">$ENV_DIR</span>
+
+<span class="c1"># Activate the virtual environment</span>
+<span class="nb">source</span><span class="w"> </span><span class="nv">$ENV_DIR</span>/bin/activate
+
+<span class="c1"># Upgrade pip</span>
+pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+
+<span class="c1"># Install Python packages</span>
+pip<span class="w"> </span>install<span class="w"> </span>jupyter<span class="w"> </span>jupyterlab<span class="w"> </span>ipykernel<span class="w"> </span>jupyter-book
+
+<span class="c1"># Install IRkernel for R</span>
+Rscript<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;install.packages(&#39;IRkernel&#39;, repos=&#39;https://cloud.r-project.org/&#39;)&quot;</span>
+Rscript<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;IRkernel::installspec(name = &#39;ir&#39;, displayname = &#39;R&#39;)&quot;</span>
+
+<span class="c1"># Install Stata kernel (assuming you have Stata installed)</span>
+pip<span class="w"> </span>install<span class="w"> </span>stata_kernel
+python<span class="w"> </span>-m<span class="w"> </span>stata_kernel.install
+
+<span class="c1"># Deactivate the virtual environment</span>
+deactivate
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Environment setup complete.&quot;</span>
+</pre></div>
+</div>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="jbb_ssh.html">Content with notebooks</a></li>

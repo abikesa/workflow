@@ -1,55 +1,110 @@
-# Markdown Files
+# SSH
 
-Whether you write your book's content in Jupyter Notebooks (`.ipynb`) or
-in regular markdown files (`.md`), you'll write in the same flavor of markdown
-called **MyST Markdown**.
-This is a simple file to help you get started and show off some syntax.
+```bash
+#!/bin/bash
 
-## What is MyST?
+# Prompt the user for their GitHub information; rmstuff_ssh.sh
+read -p "Enter your GitHub username: " USERNAME
+read -p "Enter your GitHub repo: " REPO
+read -p "Enter the filenames or directories to remove (space-separated, use quotes for names with spaces): " FILENAMES
+read -p "Enter your GitHub email: " EMAIL
+read -p "Enter the path to your GitHub SSH key: " SSH_KEY_PATH
 
-MyST stands for "Markedly Structured Text". It
-is a slight variation on a flavor of markdown called "CommonMark" markdown,
-with small syntax extensions to allow you to write **roles** and **directives**
-in the Sphinx ecosystem.
+# Use a temporary directory for the clone operation
+TEMP_DIR=$(mktemp -d)
+if [ ! -d "$TEMP_DIR" ]; then
+  echo "Failed to create temporary directory"
+  exit 1
+fi
 
-For more about MyST, see [the MyST Markdown Overview](https://jupyterbook.org/content/myst.html).
+# Clone the repository using SSH
+git clone "git@github.com:$USERNAME/$REPO.git" "$TEMP_DIR"
+cd "$TEMP_DIR" || { echo "Failed to enter repository directory"; exit 1; }
 
-## Sample Roles and Directives
+# Remove the specified files or directories
+IFS=' ' read -r -a FILEARRAY <<< "$FILENAMES"
+for FILENAME in "${FILEARRAY[@]}"; do
+  if [ -e "$FILENAME" ]; then
+    rm -rf "$FILENAME"
+    echo "Removed $FILENAME"
+  else
+    echo "File or directory $FILENAME does not exist"
+  fi
+done
 
-Roles and directives are two of the most powerful tools in Jupyter Book. They
-are like functions, but written in a markup language. They both
-serve a similar purpose, but **roles are written in one line**, whereas
-**directives span many lines**. They both accept different kinds of inputs,
-and what they do with those inputs depends on the specific role or directive
-that is being called.
+# Stage, commit, and push the deletions
+git add -A
+git commit -m "Removed files or directories: ${FILENAMES[*]} from repository"
+git config --local user.name "$USERNAME"
+git config --local user.email "$EMAIL"
 
-Here is a "note" directive:
+# Ensure the SSH key has the correct permissions
+chmod 600 "$SSH_KEY_PATH"
+eval "$(ssh-agent -s)"
+ssh-add "$SSH_KEY_PATH"
 
-```{note}
-Here is a note
+# Push the changes to the main branch
+git push origin main
+
+echo "Removed ${FILENAMES[*]} and pushed changes to $REPO"
+
+# Clean up the temporary directory
+cd ..
+rm -rf "$TEMP_DIR
 ```
 
-It will be rendered in a special box when you build your book.
+# HTTPS
 
-Here is an inline directive to refer to a document: {doc}`markdown-notebooks`.
+```bash
+#!/bin/bash
 
+# Prompt the user for their GitHub information
+read -p "Enter your GitHub username: " USERNAME
+read -p "Enter your GitHub repository name: " REPO
+read -p "Enter your GitHub email: " EMAIL
 
-## Citations
+# Read filenames or directories to remove, handling spaces
+echo "Enter the filenames or directories to remove (one per line). Press Enter on an empty line to finish:"
+FILENAMES=()
+while true; do
+    read -r line
+    [[ -z "$line" ]] && break
+    FILENAMES+=("$line")
+done
 
-You can also cite references that are stored in a `bibtex` file. For example,
-the following syntax: `` {cite}`holdgraf_evidence_2014` `` will render like
-this: {cite}`holdgraf_evidence_2014`.
+# Use a temporary directory for the clone operation
+TEMP_DIR=$(mktemp -d)
+if [ ! -d "$TEMP_DIR" ]; then
+  echo "Failed to create temporary directory"
+  exit 1
+fi
 
-Moreover, you can insert a bibliography into your page with this syntax:
-The `{bibliography}` directive must be used for all the `{cite}` roles to
-render properly.
-For example, if the references for your book are stored in `references.bib`,
-then the bibliography is inserted with:
+git clone "https://github.com/$USERNAME/$REPO.git" "$TEMP_DIR"
+cd "$TEMP_DIR" || { echo "Failed to enter repository directory"; exit 1; }
 
-```{bibliography}
+# Remove the specified files or directories
+for FILENAME in "${FILENAMES[@]}"; do
+  if [ -e "$FILENAME" ]; then
+    rm -rf "$FILENAME"
+    echo "Removed $FILENAME"
+  else
+    echo "File or directory $FILENAME does not exist"
+  fi
+done
+
+# Stage, commit, and push the deletions
+git add -A
+git commit -m "Removed files or directories: ${FILENAMES[*]} from repository"
+git config --local user.name "$USERNAME"
+git config --local user.email "$EMAIL"
+
+# Push the changes to the main branch (will prompt for username and password)
+git push origin main
+
+echo "Removed ${FILENAMES[*]} and pushed changes to $REPO"
+
+# Clean up the temporary directory
+cd ..
+rm -rf "$TEMP_DIR"
+
 ```
-
-## Learn more
-
-This is just a simple starter to get you started.
-You can learn a lot more at [jupyterbook.org](https://jupyterbook.org).

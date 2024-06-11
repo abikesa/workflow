@@ -1,9 +1,6 @@
-# Retiring `id_workflow``
-
-```bash
 #!/bin/zsh
 
-# Define the environment directory; setup_environement.sh
+# Define the environment directory
 ENV_DIR="myenv"
 
 # Remove the existing environment if it exists
@@ -35,8 +32,3 @@ python -m stata_kernel.install
 deactivate
 
 echo "Environment setup complete."
-
-```
-
-```{tableofcontents}
-```
