@@ -18,7 +18,7 @@ source $ENV_DIR/bin/activate
 pip install --upgrade pip
 
 # Install Python packages
-pip install jupyter jupyterlab ipykernel jupyter-book
+pip install jupyter jupyterlab ipykernel jupyter-book ghp-import matplotlib numpy wordcloud
 
 # Install IRkernel for R
 Rscript -e "install.packages('IRkernel', repos='https://cloud.r-project.org/')"
@@ -32,3 +32,6 @@ python -m stata_kernel.install
 deactivate
 
 echo "Environment setup complete."
+
+# gist-id = repo
+# https://raw.githubusercontent.com/abikesa/workflow/main/setup_environemnt.sh
