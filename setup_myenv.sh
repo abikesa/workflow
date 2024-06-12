@@ -1,10 +1,3 @@
-# Retiring `id_workflow`
-
-# Myenv
-
-This script is for a creative-destructive approach to workflow
-
-```bash
 #!/bin/zsh
 
 # Define the environment directory
@@ -42,8 +35,3 @@ echo "Environment setup complete."
 
 # gist-id = repo
 # https://raw.githubusercontent.com/abikesa/workflow/main/setup_environemnt.sh
-
-```
-
-```{tableofcontents}
-```
