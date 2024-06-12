@@ -14,4 +14,4 @@ kernelspec:
 
 # MyST
 
-Make some notes
+Try using this code in GitHub to channel `.ipynb`

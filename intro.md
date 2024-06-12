@@ -2,7 +2,7 @@
 
 # Myenv
 
-This script is for a creative-destructive approach to workflow
+This script is for a creative-destructive approach to workflow. Please visit [here](https://abikesa.github.io/scripts/) for more
 
 ```bash
 #!/bin/zsh

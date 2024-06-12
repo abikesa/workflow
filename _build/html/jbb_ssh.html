@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; New Workflow</title>
+    <title>Simulation &#8212; New Workflow</title>
   
   
   
@@ -177,7 +177,8 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Simulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jbb_https.html">MyST</a></li>
 </ul>
 
@@ -351,9 +352,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -364,19 +363,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Simulation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -386,21 +377,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span><span class="p">,</span> <span class="n">cycler</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ion</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;contextlib.ExitStack at 0x10573c800&gt;
-</pre></div>
-</div>
-</div>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="simulation">
+<h1>Simulation<a class="headerlink" href="#simulation" title="Link to this heading">#</a></h1>
+<p>Basic Python code</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -408,7 +387,12 @@ document.write(`
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fixing random state for reproducibility</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span><span class="p">,</span> <span class="n">cycler</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ion</span><span class="p">()</span>
+
+<span class="c1"># Fixing random state for reproducibility</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">19680801</span><span class="p">)</span>
 
 <span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
@@ -436,90 +420,7 @@ document.write(`
 </div>
 <p>There is a lot more that you can do with outputs (such as including interactive outputs)
 with your book. For more information about this, see <a class="reference external" href="https://jupyterbook.org">the Jupyter Book documentation</a></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># User-defined inputs for abi/abikesa_jbb.sh; substantive edits on 08/14/2023:</span>
-<span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Enter your GitHub username: &quot;</span><span class="w"> </span>GITHUB_USERNAME
-<span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Enter your GitHub repository name: &quot;</span><span class="w"> </span>REPO_NAME
-<span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Enter your email address: &quot;</span><span class="w"> </span>EMAIL_ADDRESS
-<span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Enter your root directory (e.g., ~/Dropbox/1f.ἡἔρις,κ/1.ontology): &quot;</span><span class="w"> </span>ROOT_DIR
-<span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Enter the name of the subdirectory to be built within the root directory: &quot;</span><span class="w"> </span>SUBDIR_NAME
-<span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Enter your commit statement &quot;</span><span class="w"> </span>COMMIT_THIS
-<span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Enter your SSH key path (e.g., ~/.ssh/id_nh_projectbetaprojectbeta): &quot;</span><span class="w"> </span>SSH_KEY_PATH
-
-<span class="c1"># Ensure ssh-agent is running; https://github.com/jhurepos/projectbeta </span>
-<span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>ssh-agent<span class="w"> </span>-s<span class="k">)</span><span class="s2">&quot;</span>
-
-<span class="c1"># Remove all identities from the SSH agent</span>
-ssh-add<span class="w"> </span>-D
-
-<span class="c1"># Add your SSH key to the agent</span>
-chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">eval</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$SSH_KEY_PATH</span><span class="k">)</span><span class="s2">&quot;</span>
-ssh-add<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">eval</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$SSH_KEY_PATH</span><span class="k">)</span><span class="s2">&quot;</span>
-
-<span class="c1"># Build the book with Jupyter Book</span>
-git<span class="w"> </span>config<span class="w"> </span>--local<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$GITHUB_USERNAME</span><span class="s2">&quot;</span>
-git<span class="w"> </span>config<span class="w"> </span>--local<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$EMAIL_ADDRESS</span><span class="s2">&quot;</span>
-
-<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">eval</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$ROOT_DIR</span><span class="k">)</span><span class="s2">&quot;</span>
-
-<span class="c1"># rm -rf $SUBDIR_NAME/_build; cuts runtimes by 90%+;</span>
-rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$SUBDIR_NAME</span>/_build
-jb<span class="w"> </span>build<span class="w"> </span><span class="nv">$SUBDIR_NAME</span>
-rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$REPO_NAME</span>
-
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$REPO_NAME</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Directory </span><span class="nv">$REPO_NAME</span><span class="s2"> already exists. Choose another directory or delete the existing one.&quot;</span>
-<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
-<span class="k">fi</span>
-
-<span class="c1"># Cloning</span>
-git<span class="w"> </span>clone<span class="w"> </span><span class="s2">&quot;git@github.com:</span><span class="nv">$GITHUB_USERNAME</span><span class="s2">/</span><span class="nv">$REPO_NAME</span><span class="s2">&quot;</span>
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$REPO_NAME</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Failed to clone the repository. Check your GitHub username, repository name, and permissions.&quot;</span>
-<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
-<span class="k">fi</span>
-
-<span class="c1"># Copy files from subdirectory to the current repository directory; restored $REPO_NAME!!!</span>
-cp<span class="w"> </span>-r<span class="w"> </span><span class="nv">$SUBDIR_NAME</span>/*<span class="w"> </span><span class="nv">$REPO_NAME</span>
-<span class="nb">cd</span><span class="w"> </span><span class="nv">$REPO_NAME</span>
-
-git<span class="w"> </span>add<span class="w"> </span>./*
-git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$COMMIT_THIS</span><span class="s2">&quot;</span>
-git<span class="w"> </span>remote<span class="w"> </span>-v
-ssh-add<span class="w"> </span>-D<span class="w"> </span>
-<span class="c1"># Remove all identities from the SSH agent</span>
-chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">eval</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$SSH_KEY_PATH</span><span class="k">)</span><span class="s2">&quot;</span>
-<span class="c1"># ls -l ~/.ssh/id_stata0elemental</span>
-<span class="c1">#chmod 600 &quot;$(eval echo ~/.ssh/id_workflow)&quot;</span>
-
-git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>origin<span class="w"> </span><span class="s2">&quot;git@github.com:</span><span class="nv">$GITHUB_USERNAME</span><span class="s2">/</span><span class="nv">$REPO_NAME</span><span class="s2">&quot;</span>
-<span class="c1"># git remote set-url origin &quot;git@github.com:abikesa/flow&quot;</span>
-ssh-add<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">eval</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$SSH_KEY_PATH</span><span class="k">)</span><span class="s2">&quot;</span>
-git<span class="w"> </span>config<span class="w"> </span>--local<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$GITHUB_USERNAME</span><span class="s2">&quot;</span>
-git<span class="w"> </span>config<span class="w"> </span>--local<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$EMAIL_ADDRESS</span><span class="s2">&quot;</span>
-
-
-<span class="c1"># Checkout the main branch</span>
-git<span class="w"> </span>checkout<span class="w"> </span>main
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Failed to checkout the main branch. Make sure it exists in the repository.&quot;</span>
-<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
-<span class="k">fi</span>
-
-<span class="c1"># Pushing changes</span>
-<span class="c1"># git config pull.rebase true</span>
-<span class="c1"># git pull</span>
-git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>main
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Failed to push to the repository. Check your SSH key path and GitHub permissions.&quot;</span>
-<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
-<span class="k">fi</span>
-
-ghp-import<span class="w"> </span>-n<span class="w"> </span>-p<span class="w"> </span>-f<span class="w"> </span>_build/html
-<span class="nb">cd</span><span class="w"> </span>..
-rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$REPO_NAME</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Jupyter Book content updated and pushed to </span><span class="nv">$GITHUB_USERNAME</span><span class="s2">/</span><span class="nv">$REPO_NAME</span><span class="s2"> repository!&quot;</span>
-</pre></div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -575,21 +476,6 @@ rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$REPO_NAME
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>

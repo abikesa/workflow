@@ -11,8 +11,34 @@ fi
 # Create a new virtual environment
 python3 -m venv $ENV_DIR
 
+# Check if virtual environment was created successfully
+if [ ! -d "$ENV_DIR" ]; then
+    echo "Failed to create virtual environment."
+    exit 1
+fi
+
 # Activate the virtual environment
 source $ENV_DIR/bin/activate
+
+# Check if activation was successful
+if [ "$VIRTUAL_ENV" != "" ]; then
+    echo "Virtual environment activated."
+else
+    echo "Failed to activate virtual environment."
+    exit 1
+fi
+
+# Ensure pip is installed
+if ! command -v pip &> /dev/null; then
+    echo "pip could not be found, installing pip..."
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    python get-pip.py
+    if [ $? -ne 0 ]; then
+        echo "Failed to install pip."
+        deactivate
+        exit 1
+    fi
+fi
 
 # Upgrade pip
 pip install --upgrade pip
@@ -20,18 +46,47 @@ pip install --upgrade pip
 # Install Python packages
 pip install jupyter jupyterlab ipykernel jupyter-book ghp-import matplotlib numpy wordcloud
 
+# Check if Jupyter Book is installed
+if ! command -v jb &> /dev/null; then
+    echo "Jupyter Book could not be found. Something went wrong with the installation."
+    deactivate
+    exit 1
+fi
+
 # Install IRkernel for R
 Rscript -e "install.packages('IRkernel', repos='https://cloud.r-project.org/')"
+if [ $? -ne 0 ]; then
+    echo "Failed to install IRkernel."
+    deactivate
+    exit 1
+fi
 Rscript -e "IRkernel::installspec(name = 'ir', displayname = 'R')"
+if [ $? -ne 0 ]; then
+    echo "Failed to install IRkernel spec."
+    deactivate
+    exit 1
+fi
 
 # Install Stata kernel (assuming you have Stata installed)
 pip install stata_kernel
 python -m stata_kernel.install
-
-# Deactivate the virtual environment
-deactivate
+if [ $? -ne 0 ]; then
+    echo "Failed to install Stata kernel."
+    deactivate
+    exit 1
+fi
 
 echo "Environment setup complete."
 
-# gist-id = repo
-# https://raw.githubusercontent.com/abikesa/workflow/main/setup_environemnt.sh
+# Build the Jupyter Book
+jb build old
+if [ $? -ne 0 ]; then
+    echo "Failed to build Jupyter Book."
+    deactivate
+    exit 1
+fi
+
+echo "Jupyter Book build complete."
+
+# Deactivate the virtual environment
+deactivate
