@@ -43,8 +43,8 @@ fi
 # Upgrade pip
 pip install --upgrade pip
 
-# Install Python packages
-pip install jupyter jupyterlab ipykernel jupyter-book ghp-import matplotlib numpy wordcloud
+# Install necessary Python packages
+pip install jupyter jupyterlab ipykernel jupyter-book ghp-import matplotlib numpy wordcloud pandas scipy seaborn scikit-learn tensorflow keras plotly dash flask django pytest pylint black isort mypy pydantic fastapi uvicorn requests beautifulsoup4 sqlalchemy ipython tqdm joblib sympy h5py pyqt5 nbconvert nbformat ipywidgets
 
 # Check if Jupyter Book is installed
 if ! command -v jb &> /dev/null; then
@@ -78,15 +78,9 @@ fi
 
 echo "Environment setup complete."
 
-# Build the Jupyter Book
-jb build old
-if [ $? -ne 0 ]; then
-    echo "Failed to build Jupyter Book."
-    deactivate
-    exit 1
-fi
-
-echo "Jupyter Book build complete."
-
 # Deactivate the virtual environment
 deactivate
+
+# Print instructions for reactivating the virtual environment
+echo "To reactivate the virtual environment, use the following command:"
+echo "source $ENV_DIR/bin/activate"
