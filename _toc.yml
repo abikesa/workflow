@@ -4,6 +4,9 @@
 format: jb-book
 root: intro
 chapters:
+- file: py
+- file: r
+- file: stata
 - file: jbb_ssh
 - file: jbb_https
 
