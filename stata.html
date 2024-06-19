@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>GPT-4o &#8212; New Workflow</title>
+    <title>Stata &#8212; New Workflow</title>
   
   
   
@@ -57,13 +57,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'jbb_ssh';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'stata';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Other" href="jbb_https.html" />
-    <link rel="prev" title="Stata" href="stata.html" />
+    <link rel="next" title="GPT-4o" href="jbb_ssh.html" />
+    <link rel="prev" title="R" href="r.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -182,8 +180,8 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="py.html">Py</a></li>
 <li class="toctree-l1"><a class="reference internal" href="r.html">R</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stata.html">Stata</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">GPT-4o</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Stata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jbb_ssh.html">GPT-4o</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jbb_https.html">Other</a></li>
 </ul>
 
@@ -256,7 +254,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fjbb_ssh.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fstata.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -286,7 +284,7 @@
       
       
       
-      <li><a href="_sources/jbb_ssh.ipynb" target="_blank"
+      <li><a href="_sources/stata.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -368,7 +366,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>GPT-4o</h1>
+    <h1>Stata</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -382,17 +380,131 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="gpt-4o">
-<h1>GPT-4o<a class="headerlink" href="#gpt-4o" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="stata">
+<h1>Stata<a class="headerlink" href="#stata" title="Link to this heading">#</a></h1>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">qui</span> {
+    <span class="c1">// ChatGPT wrote this script following a few instructions from me</span>
+<span class="c1">    * I&#39;ll indicate with `*` the points I edited for it to work</span>
+    <span class="c1">// Very impressive since this was a first iteration</span>
+
+<span class="k">    clear</span>
+
+    <span class="c1">// Set the number of students and sessions</span>
+<span class="k">    local</span> nstudents <span class="m">100</span>
+<span class="k">    local</span> nsessions <span class="m">8</span>
+
+    <span class="c1">// Create an empty dataset</span>
+<span class="k">    set</span> obs <span class="m">8</span>
+<span class="k">    gen</span> student_id = .
+<span class="k">    gen</span> session = .
+<span class="k">    gen</span> sbp = .
+<span class="k">    gen</span> session_date = .
+
+    <span class="c1">// Loop over each student</span>
+<span class="k">    forvalues</span> i = <span class="m">1</span><span class="o">/</span><span class="nv">`nstudents&#39;</span> {
+        <span class="c1">// Generate data for each session for the current student</span>
+<span class="k">        forvalues</span> j = <span class="m">1</span><span class="o">/</span><span class="nv">`nsessions&#39;</span> {
+            <span class="c1">// Generate student ID</span>
+<span class="k">            replace</span> student_id = <span class="nv">`i&#39;</span>
+            
+            <span class="c1">// Generate session</span>
+<span class="k">            replace</span> session = <span class="nv">`j&#39;</span>
+            
+            <span class="c1">// Generate simulated systolic blood pressure measurements</span>
+<span class="k">            set</span> seed <span class="nv">`i&#39;`j&#39;</span> <span class="c1">// Set seed based on student and session</span>
+<span class="k">            replace</span> sbp = <span class="nf">rnormal</span>(<span class="m">120</span>, <span class="m">10</span>)
+            
+            <span class="c1">// Append data for the current session to the dataset</span>
+<span class="c1">            *append</span>
+<span class="c1">            *ChatGPT included the &quot;append&quot; command with no additional syntax</span>
+        }
+<span class="c1">        *I inserted this line of code</span>
+<span class="k">        if</span> <span class="nf">c</span>(os) <span class="o">==</span> <span class="s">&quot;MacOSX&quot;</span> {
+<span class="k">            save</span> student<span class="nv">`i&#39;</span>,<span class="k"> replace</span>  
+        } 
+<span class="k">        else</span> {
+<span class="k">            save</span> student<span class="nv">`i&#39;</span>,<span class="k"> replace</span>  
+        }   
+    }
+
+<span class="c1">    * ChatGPT&#39;s contribution ends at this point</span>
+
+<span class="k">    clear</span> 
+<span class="k">    forvalues</span> i = <span class="m">1</span><span class="o">/</span><span class="nv">`nstudents&#39;</span> {
+<span class="k">        append</span> using student<span class="nv">`i&#39;</span>.dta
+<span class="c1">        *Please understand what mess is wrought by blocking this &quot;rm&quot; line of code</span>
+<span class="k">        rm</span> student<span class="nv">`i&#39;</span>.dta  
+    }
+
+<span class="c1">    * Sort the dataset</span>
+<span class="k">    sort</span> student_id session
+
+<span class="c1">    * Display the first few observations</span>
+<span class="k">    list</span> student_id session sbp<span class="k"> in</span> <span class="m">1</span><span class="o">/</span><span class="m">10</span>
+
+<span class="c1">    * Not what we wanted</span>
+<span class="k">    bys</span> student_id:<span class="k"> replace</span> session = _n
+
+<span class="c1">    * Let&#39;s include the dates</span>
+<span class="k">    local</span> session_date =<span class="k"> d</span>(28mar2024)
+<span class="k">    forvalues</span> i = <span class="m">1</span><span class="o">/</span><span class="m">8</span> {
+<span class="k">        replace</span> session_date = <span class="nv">`session_date&#39;</span><span class="k"> if</span> session <span class="o">==</span> <span class="nv">`i&#39;</span>
+<span class="k">        local</span> session_date = <span class="nv">`session_date&#39;</span> <span class="o">+</span> <span class="m">7</span>
+    }
+<span class="k">    format</span> session_date <span class="nx">%td</span>
+<span class="k">    codebook</span> 
+<span class="k">    replace</span> sbp = <span class="nf">round</span>(sbp)
+<span class="k">    if</span> <span class="nf">c</span>(os) <span class="o">==</span> <span class="s">&quot;MacOSX&quot;</span> {
+<span class="k">        save</span> student_pressure,<span class="k"> replace</span>
+    } 
+<span class="k">    else</span> {
+<span class="k">        save</span> student_pressure,<span class="k"> replace</span>
+    } 
+
+<span class="k">    count</span>
+<span class="k">    capture isid</span> student_id
+<span class="k">    if</span> _rc <span class="o">!=</span> <span class="m">0</span> {
+<span class="k">        di</span> <span class="s">`&quot;Observations are nested within &quot;student_id&quot; &quot;&#39;</span>
+    } 
+<span class="k">    else</span> {
+<span class="k">        di</span> <span class="s">`&quot;student_id&quot; uniquely identifies observations&quot;&#39;</span>
+    }
+}
+</pre></div>
+</div>
+</div>
+</details>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="m">1+1</span>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">qui</span> {
+<span class="k">    use</span> student_pressure,<span class="k"> clear</span>
+    <span class="c1">// Line plot of SBP over the 8-week period</span>
+<span class="k">    twoway</span> (scatter sbp session_date,<span class="k"> sort</span> jitter(<span class="m">9</span>)) <span class="cs">///</span>
+        , xtitle(<span class="s">&quot;Session Date&quot;</span>) ytitle(<span class="s">&quot;Systolic Blood Pressure&quot;</span>) <span class="cs">///</span>
+        title(<span class="s">&quot;Systolic Blood Pressure Over 8 Weeks&quot;</span>) legend(off)
+<span class="k">    graph</span> export stata<span class="m">.</span>png,<span class="k"> replace</span> 
+}
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">2</div></div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>file /Users/apollo/.stata_kernel_cache/graph0.svg saved as SVG format
+</pre></div>
 </div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>file /Users/apollo/.stata_kernel_cache/graph0.pdf saved as PDF format
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="" src="_images/stata.png" /></p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -404,16 +516,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "r"
+            mode: "stata"
         },
         kernelOptions: {
-            name: "ir",
+            name: "stata",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'ir'</script>
+    <script>kernelName = 'stata'</script>
 
                 </article>
               
@@ -426,20 +538,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="stata.html"
+       href="r.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Stata</p>
+        <p class="prev-next-title">R</p>
       </div>
     </a>
     <a class="right-next"
-       href="jbb_https.html"
+       href="jbb_ssh.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Other</p>
+        <p class="prev-next-title">GPT-4o</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
