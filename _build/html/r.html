@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>GPT-4o &#8212; New Workflow</title>
+    <title>R &#8212; New Workflow</title>
   
   
   
@@ -59,11 +59,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'jbb_ssh';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'r';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Other" href="jbb_https.html" />
-    <link rel="prev" title="Stata" href="stata.html" />
+    <link rel="next" title="Stata" href="stata.html" />
+    <link rel="prev" title="Py" href="py.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -181,9 +181,9 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="py.html">Py</a></li>
-<li class="toctree-l1"><a class="reference internal" href="r.html">R</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stata.html">Stata</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">GPT-4o</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jbb_ssh.html">GPT-4o</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jbb_https.html">Other</a></li>
 </ul>
 
@@ -256,7 +256,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fjbb_ssh.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fr.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -286,7 +286,7 @@
       
       
       
-      <li><a href="_sources/jbb_ssh.ipynb" target="_blank"
+      <li><a href="_sources/r.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -368,7 +368,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>GPT-4o</h1>
+    <h1>R</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -382,16 +382,82 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="gpt-4o">
-<h1>GPT-4o<a class="headerlink" href="#gpt-4o" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="r">
+<h1>R<a class="headerlink" href="#r" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="m">1+1</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install necessary packages if not already installed</span>
+<span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">requireNamespace</span><span class="p">(</span><span class="s">&quot;IRkernel&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">quietly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;IRkernel&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">repos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;http://cran.us.r-project.org&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="n">IRkernel</span><span class="o">::</span><span class="nf">installspec</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">requireNamespace</span><span class="p">(</span><span class="s">&quot;ggplot2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">quietly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;ggplot2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">repos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;http://cran.us.r-project.org&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">requireNamespace</span><span class="p">(</span><span class="s">&quot;dplyr&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">quietly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;dplyr&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">repos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;http://cran.us.r-project.org&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1"># Load libraries with suppressed messages</span>
+<span class="nf">suppressPackageStartupMessages</span><span class="p">(</span><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">))</span>
+<span class="nf">suppressPackageStartupMessages</span><span class="p">(</span><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">))</span>
+
+<span class="c1"># Print a simple message</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Hello, Jupyter!&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create a simple data frame</span>
+<span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="m">100</span><span class="p">),</span>
+<span class="w">  </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="m">100</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Display the first few rows of the data frame</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Create a simple plot</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Scatter Plot of Random Data&quot;</span><span class="p">)</span>
+
+<span class="c1"># Perform a simple calculation</span>
+<span class="n">mean_x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">x</span><span class="p">)</span>
+<span class="n">mean_y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Print the results</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Mean of x:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">mean_x</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Mean of y:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">mean_y</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">2</div></div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Hello, Jupyter!&quot;
+</pre></div>
+</div>
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 2</caption>
+<thead>
+	<tr><th></th><th scope=col>x</th><th scope=col>y</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>-0.42450137</td><td>-0.95304908</td></tr>
+	<tr><th scope=row>2</th><td> 0.19714608</td><td> 0.76636228</td></tr>
+	<tr><th scope=row>3</th><td>-0.12721781</td><td> 0.01997143</td></tr>
+	<tr><th scope=row>4</th><td>-0.06698191</td><td>-0.28710063</td></tr>
+	<tr><th scope=row>5</th><td>-2.05339487</td><td> 0.46419675</td></tr>
+	<tr><th scope=row>6</th><td>-0.89369569</td><td>-1.05707700</td></tr>
+</tbody>
+</table>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean of x: -0.026662 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean of y: -0.004632056 
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/bae646e2bb5e317eae6a1641b440c618e1e26b791cef7641af5a1a250ac5e82f.png"><img alt="_images/bae646e2bb5e317eae6a1641b440c618e1e26b791cef7641af5a1a250ac5e82f.png" src="_images/bae646e2bb5e317eae6a1641b440c618e1e26b791cef7641af5a1a250ac5e82f.png" style="width: 420px; height: 420px;" /></a>
+</div>
 </div>
 </section>
 
@@ -426,20 +492,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="stata.html"
+       href="py.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Stata</p>
+        <p class="prev-next-title">Py</p>
       </div>
     </a>
     <a class="right-next"
-       href="jbb_https.html"
+       href="stata.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Other</p>
+        <p class="prev-next-title">Stata</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -12,6 +12,6 @@ kernelspec:
   name: python3
 ---
 
-# MyST
+# Other
 
 Try using this code in GitHub to channel `.ipynb`

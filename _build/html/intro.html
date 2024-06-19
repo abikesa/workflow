@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Retiring id_workflow &#8212; New Workflow</title>
+    <title>Myenv &#8212; New Workflow</title>
   
   
   
@@ -57,10 +57,12 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Simulation" href="jbb_ssh.html" />
+    <link rel="next" title="Py" href="py.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -174,13 +176,16 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
                 <a class="reference internal" href="#">
-                    Retiring id_workflow
+                    Myenv
                 </a>
             </li>
         </ul>
         <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="jbb_ssh.html">Simulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="jbb_https.html">MyST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py.html">Py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="r.html">R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stata.html">Stata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jbb_ssh.html">GPT-4o</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jbb_https.html">Other</a></li>
 </ul>
 
     </div>
@@ -353,9 +358,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -366,21 +369,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Retiring id_workflow</h1>
+    <h1>Myenv</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Retiring <code class="docutils literal notranslate"><span class="pre">id_workflow</span></code></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#myenv">Myenv</a></li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -390,11 +383,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="retiring-id-workflow">
-<h1>Retiring <code class="docutils literal notranslate"><span class="pre">id_workflow</span></code><a class="headerlink" href="#retiring-id-workflow" title="Link to this heading">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="myenv">
+  <section class="tex2jax_ignore mathjax_ignore" id="myenv">
 <h1>Myenv<a class="headerlink" href="#myenv" title="Link to this heading">#</a></h1>
+<p>We are retiring <code class="docutils literal notranslate"><span class="pre">id_workflow</span></code>&amp; adopting <code class="docutils literal notranslate"><span class="pre">id_new.workflow</span></code></p>
 <p>This script is for a creative-destructive approach to workflow. Please visit <a class="reference external" href="https://abikesa.github.io/scripts/">here</a> for more</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/zsh</span>
 
@@ -409,36 +400,88 @@ document.write(`
 <span class="c1"># Create a new virtual environment</span>
 python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span><span class="nv">$ENV_DIR</span>
 
+<span class="c1"># Check if virtual environment was created successfully</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ENV_DIR</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Failed to create virtual environment.&quot;</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+
 <span class="c1"># Activate the virtual environment</span>
 <span class="nb">source</span><span class="w"> </span><span class="nv">$ENV_DIR</span>/bin/activate
+
+<span class="c1"># Check if activation was successful</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VIRTUAL_ENV</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Virtual environment activated.&quot;</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Failed to activate virtual environment.&quot;</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+
+<span class="c1"># Ensure pip is installed</span>
+<span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-v<span class="w"> </span>pip<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;pip could not be found, installing pip...&quot;</span>
+<span class="w">    </span>curl<span class="w"> </span>https://bootstrap.pypa.io/get-pip.py<span class="w"> </span>-o<span class="w"> </span>get-pip.py
+<span class="w">    </span>python<span class="w"> </span>get-pip.py
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Failed to install pip.&quot;</span>
+<span class="w">        </span>deactivate
+<span class="w">        </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="k">fi</span>
 
 <span class="c1"># Upgrade pip</span>
 pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
 
-<span class="c1"># Install Python packages</span>
-pip<span class="w"> </span>install<span class="w"> </span>jupyter<span class="w"> </span>jupyterlab<span class="w"> </span>ipykernel<span class="w"> </span>jupyter-book<span class="w"> </span>ghp-import<span class="w"> </span>matplotlib<span class="w"> </span>numpy<span class="w"> </span>wordcloud
+<span class="c1"># Install necessary Python packages</span>
+pip<span class="w"> </span>install<span class="w"> </span>jupyter<span class="w"> </span>jupyterlab<span class="w"> </span>ipykernel<span class="w"> </span>jupyter-book<span class="w"> </span>ghp-import<span class="w"> </span>matplotlib<span class="w"> </span>numpy<span class="w"> </span>wordcloud<span class="w"> </span>pandas<span class="w"> </span>scipy<span class="w"> </span>seaborn<span class="w"> </span>scikit-learn<span class="w"> </span>tensorflow<span class="w"> </span>keras<span class="w"> </span>plotly<span class="w"> </span>dash<span class="w"> </span>flask<span class="w"> </span>django<span class="w"> </span>pytest<span class="w"> </span>pylint<span class="w"> </span>black<span class="w"> </span>isort<span class="w"> </span>mypy<span class="w"> </span>pydantic<span class="w"> </span>fastapi<span class="w"> </span>uvicorn<span class="w"> </span>requests<span class="w"> </span>beautifulsoup4<span class="w"> </span>sqlalchemy<span class="w"> </span>ipython<span class="w"> </span>tqdm<span class="w"> </span>joblib<span class="w"> </span>sympy<span class="w"> </span>h5py<span class="w"> </span>pyqt5<span class="w"> </span>nbconvert<span class="w"> </span>nbformat<span class="w"> </span>ipywidgets<span class="w"> </span>networkx
+
+<span class="c1"># Check if Jupyter Book is installed</span>
+<span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-v<span class="w"> </span>jb<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Jupyter Book could not be found. Something went wrong with the installation.&quot;</span>
+<span class="w">    </span>deactivate
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
 
 <span class="c1"># Install IRkernel for R</span>
 Rscript<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;install.packages(&#39;IRkernel&#39;, repos=&#39;https://cloud.r-project.org/&#39;)&quot;</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Failed to install IRkernel.&quot;</span>
+<span class="w">    </span>deactivate
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
 Rscript<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;IRkernel::installspec(name = &#39;ir&#39;, displayname = &#39;R&#39;)&quot;</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Failed to install IRkernel spec.&quot;</span>
+<span class="w">    </span>deactivate
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
 
 <span class="c1"># Install Stata kernel (assuming you have Stata installed)</span>
 pip<span class="w"> </span>install<span class="w"> </span>stata_kernel
 python<span class="w"> </span>-m<span class="w"> </span>stata_kernel.install
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Failed to install Stata kernel.&quot;</span>
+<span class="w">    </span>deactivate
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Environment setup complete.&quot;</span>
 
 <span class="c1"># Deactivate the virtual environment</span>
 deactivate
 
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Environment setup complete.&quot;</span>
-
-<span class="c1"># gist-id = repo</span>
-<span class="c1"># https://raw.githubusercontent.com/abikesa/workflow/main/setup_environemnt.sh</span>
+<span class="c1"># Print instructions for reactivating the virtual environment</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;To reactivate the virtual environment, use the following command:&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;source </span><span class="nv">$ENV_DIR</span><span class="s2">/bin/activate&quot;</span>
 </pre></div>
 </div>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="jbb_ssh.html">Simulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="jbb_https.html">MyST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py.html">Py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="r.html">R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stata.html">Stata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jbb_ssh.html">GPT-4o</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jbb_https.html">Other</a></li>
 </ul>
 </div>
 </section>
@@ -474,11 +517,11 @@ deactivate
                   
 <div class="prev-next-area">
     <a class="right-next"
-       href="jbb_ssh.html"
+       href="py.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Simulation</p>
+        <p class="prev-next-title">Py</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -488,23 +531,6 @@ deactivate
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Retiring <code class="docutils literal notranslate"><span class="pre">id_workflow</span></code></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#myenv">Myenv</a></li>
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>
