@@ -1,4 +1,4 @@
-# User-defined inputs for abi/abikesa_jbb.sh; substantive edits on 08/14/2023:
+# mv app _build/html/app
 read -p "Enter your GitHub username: " GITHUB_USERNAME
 read -p "Enter your GitHub repository name: " REPO_NAME
 read -p "Enter your email address: " EMAIL_ADDRESS
@@ -15,6 +15,7 @@ cd "$(eval echo $ROOT_DIR)"
 rm -rf $SUBDIR_NAME/_build; cuts runtimes by 90%+;
 rm -rf $SUBDIR_NAME/_build
 jb build $SUBDIR_NAME
+mkdir -p $SUBDIR_NAME/_build/html/app && cp -r $SUBDIR_NAME/app/* $SUBDIR_NAME/_build/html/app
 rm -rf $REPO_NAME
 
 if [ -d "$REPO_NAME" ]; then
