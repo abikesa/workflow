@@ -1,12 +1,13 @@
 
+
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="./" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>R &#8212; New Workflow</title>
   
@@ -28,35 +29,36 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'r';</script>
@@ -385,7 +387,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="r">
-<h1>R<a class="headerlink" href="#r" title="Link to this heading">#</a></h1>
+<h1>R<a class="headerlink" href="#r" title="Permalink to this heading">#</a></h1>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -450,21 +452,21 @@ document.write(`
 	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><th scope=row>1</th><td>-1.0237477</td><td>-0.6243303</td></tr>
-	<tr><th scope=row>2</th><td>-1.3932811</td><td>-0.6798418</td></tr>
-	<tr><th scope=row>3</th><td>-0.3045339</td><td>-2.0740414</td></tr>
-	<tr><th scope=row>4</th><td> 1.4573871</td><td> 1.1257230</td></tr>
-	<tr><th scope=row>5</th><td> 0.3772533</td><td>-1.1347397</td></tr>
-	<tr><th scope=row>6</th><td> 2.0377829</td><td> 0.3192676</td></tr>
+	<tr><th scope=row>1</th><td> 0.61914236</td><td>-0.4408313</td></tr>
+	<tr><th scope=row>2</th><td> 1.07986441</td><td> 0.4763555</td></tr>
+	<tr><th scope=row>3</th><td>-0.04524811</td><td>-0.2822762</td></tr>
+	<tr><th scope=row>4</th><td>-0.20671330</td><td> 0.2814619</td></tr>
+	<tr><th scope=row>5</th><td>-0.97716902</td><td>-0.5008719</td></tr>
+	<tr><th scope=row>6</th><td> 0.55780576</td><td>-0.3516644</td></tr>
 </tbody>
 </table>
-</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean of x: -0.02333823 
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean of x: 0.04956028 
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean of y: 0.1178678 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean of y: -0.08702308 
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/ea256562f15ac0806fa1d1ecb2bb5df3c86e1379a2d018c13dc73812975619eb.png"><img alt="_images/ea256562f15ac0806fa1d1ecb2bb5df3c86e1379a2d018c13dc73812975619eb.png" src="_images/ea256562f15ac0806fa1d1ecb2bb5df3c86e1379a2d018c13dc73812975619eb.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/6adf11a0399101f220c43979780bdad4f051fa670c9d25bc3cbd9f95c45fe181.png"><img alt="_images/6adf11a0399101f220c43979780bdad4f051fa670c9d25bc3cbd9f95c45fe181.png" src="_images/6adf11a0399101f220c43979780bdad4f051fa670c9d25bc3cbd9f95c45fe181.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 </section>
