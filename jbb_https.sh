@@ -34,6 +34,7 @@ fi
 cp -r $SUBDIR_NAME/* $REPO_NAME
 cd $REPO_NAME
 
+# cd kitabo/website
 git add ./*
 git commit -m "$COMMIT_THIS"
 git remote -v
@@ -42,7 +43,7 @@ git remote set-url origin "https://github.com/$GITHUB_USERNAME/$REPO_NAME.git"
 git config --local user.name "$GITHUB_USERNAME"
 git config --local user.email "$EMAIL_ADDRESS"
 
-# Checkout the main branch
+# Checkout the main branch``
 git checkout main
 if [ $? -ne 0 ]; then
   echo "Failed to checkout the main branch. Make sure it exists in the repository."
@@ -59,6 +60,6 @@ if [ $? -ne 0 ]; then
 fi
 
 ghp-import -n -p -f _build/html
-cd ..
-rm -rf $REPO_NAME
+# cd ..
+# rm -rf $REPO_NAME
 echo "Jupyter Book content updated and pushed to $GITHUB_USERNAME/$REPO_NAME repository!"
