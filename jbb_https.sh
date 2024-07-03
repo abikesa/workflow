@@ -60,5 +60,5 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-ghp-import -n -p -f _build/html
+cd kitabo/ensi && ghp-import -n -p -f _build/html
 echo "Jupyter Book content updated and pushed to $GITHUB_USERNAME/$REPO_NAME repository!"
