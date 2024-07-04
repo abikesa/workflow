@@ -1,0 +1,1123 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Py &#8212; New Workflow</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'py';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="R" href="r.html" />
+    <link rel="prev" title="Myenv" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://appian.com/adobe/dynamicmedia/deliver/dm-aid--daa0272d-833e-430f-8281-20b49ad9c9f4/blog-what-is-workflow.jpg?quality=85&width=1200&preferwebp=true" class="logo__image only-light" alt="New Workflow - Home"/>
+    <script>document.write(`<img src="https://appian.com/adobe/dynamicmedia/deliver/dm-aid--daa0272d-833e-430f-8281-20b49ad9c9f4/blog-what-is-workflow.jpg?quality=85&width=1200&preferwebp=true" class="logo__image only-dark" alt="New Workflow - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Myenv
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="r.html">R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stata.html">Stata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jbb_ssh.html">Voice Memos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jbb_https.html">Other</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fpy.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/py.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Py</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#my-fave-dag">My fave DAG</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-derivation-of-the-black-scholes-formula">Part 1: Derivation of the Black-Scholes Formula</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-problem">1. <strong>Setting up the Problem</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions">2. <strong>Assumptions</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-the-black-scholes-partial-differential-equation">3. <strong>Deriving the Black-Scholes Partial Differential Equation</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-the-pde">4. <strong>Solving the PDE</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-code-for-black-scholes-formula">Python Code for Black-Scholes Formula</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-critique-of-the-black-scholes-formula">Part 2: Critique of the Black-Scholes Formula</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions-and-real-world-market-conditions">1. <strong>Assumptions and Real-World Market Conditions</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#model-risk-and-calibration">2. <strong>Model Risk and Calibration</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-jim-simons-chaos-and-machine-learning-in-the-stock-market">Part 3: Jim Simons, Chaos, and Machine Learning in the Stock Market</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#chaos-and-digital-data">1. <strong>Chaos and Digital Data</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-and-machine-learning">2. <strong>Compute and Machine Learning</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#high-frequency-trading-hft">3. <strong>High-Frequency Trading (HFT)</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-algorithms-and-feedback">4. <strong>Complex Algorithms and Feedback</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#critique-of-emh-in-light-of-simons-success">Critique of EMH in Light of Simons’ Success</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#derivation-of-d-2-from-d-1">Derivation of <span class="math notranslate nohighlight">\(d_2\)</span> from <span class="math notranslate nohighlight">\(d_1\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="py">
+<h1>Py<a class="headerlink" href="#py" title="Permalink to this heading">#</a></h1>
+<section id="my-fave-dag">
+<h2>My fave DAG<a class="headerlink" href="#my-fave-dag" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>  <span class="c1"># Add this import statement</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;1. Root&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">2500</span><span class="p">,</span> <span class="mi">700</span><span class="p">))</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;2. Pentatonic&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4200</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;3. Diatonic&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">2500</span><span class="p">,</span> <span class="o">-</span><span class="mi">700</span><span class="p">))</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;4. Chromatic&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;5. Temperament&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">1500</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;6. Expression&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">4000</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="s2">&quot;1. Root&quot;</span><span class="p">,</span> <span class="s2">&quot;4. Chromatic&quot;</span><span class="p">)])</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="s2">&quot;2. Pentatonic&quot;</span><span class="p">,</span> <span class="s2">&quot;4. Chromatic&quot;</span><span class="p">)])</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="s2">&quot;3. Diatonic&quot;</span><span class="p">,</span> <span class="s2">&quot;4. Chromatic&quot;</span><span class="p">)])</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="s2">&quot;4. Chromatic&quot;</span><span class="p">,</span> <span class="s2">&quot;5. Temperament&quot;</span><span class="p">)])</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="s2">&quot;5. Temperament&quot;</span><span class="p">,</span> <span class="s2">&quot;6. Expression&quot;</span><span class="p">)])</span>
+
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_node_attributes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s1">&#39;pos&#39;</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;4. Chromatic&quot;</span><span class="p">:</span> <span class="s2">&quot;4. Dionysian&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;1. Root&quot;</span><span class="p">:</span> <span class="s2">&quot;1. Chaos&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;2. Pentatonic&quot;</span><span class="p">:</span> <span class="s2">&quot;2. Frenzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;3. Diatonic&quot;</span><span class="p">:</span> <span class="s2">&quot;3. Energy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;5. Temperament&quot;</span><span class="p">:</span> <span class="s2">&quot;5. Algorithm&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;6. Expression&quot;</span><span class="p">:</span> <span class="s2">&quot;6. Binary&quot;</span><span class="p">}</span>
+
+<span class="c1"># Update color for the &quot;Scenarios&quot; node</span>
+<span class="n">node_colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="s2">&quot;lightblue&quot;</span><span class="p">,</span>  <span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="s2">&quot;lavender&quot;</span><span class="p">,</span>  <span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="s2">&quot;lightblue&quot;</span><span class="p">]</span>
+
+<span class="c1"># Suppress the deprecation warning</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">DeprecationWarning</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">20000</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">node_colors</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;solid&#39;</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;solid&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+
+<span class="c1"># Specify the directory where the file should be saved</span>
+<span class="n">output_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~/documents/liveserver/new&quot;</span><span class="p">)</span>  <span class="c1"># Expand the user directory</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">output_dir</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
+
+<span class="c1"># Save the plot as a PNG file in the specified directory</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="s2">&quot;self-criticism.png&quot;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/cb562ef8e2e5d1b02ac90de0f9ca175c5f2079906567fc2451482e8e6dd83fa1.png" src="_images/cb562ef8e2e5d1b02ac90de0f9ca175c5f2079906567fc2451482e8e6dd83fa1.png" />
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                 1. Pessimism
+                             \
+    2. Beyond Good &amp; Evil -&gt; 4. Dionysian -&gt; 5. Science -&gt; 6. Morality
+                             /
+                             3. Robustness
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Load the data from the CSV files</span>
+<span class="n">s0_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../s0_nondonor.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Define the survival function S(t)</span>
+<span class="k">def</span> <span class="nf">survival_function</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">s0_df</span><span class="p">[</span><span class="s1">&#39;s0_nondonor&#39;</span><span class="p">][</span><span class="n">t</span><span class="p">]</span>
+
+<span class="c1"># Define the hazard function h(t)</span>
+<span class="k">def</span> <span class="nf">hazard_function</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">hr</span> <span class="o">*</span> <span class="n">survival_function</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="c1"># Define the time array</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">s0_df</span><span class="p">))</span>
+
+<span class="c1"># Calculate the failure function</span>
+<span class="n">failure_function</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">survival_function</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+
+<span class="c1"># Plot the failure curve</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">failure_function</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability of Failure&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Failure Curve&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># Load the data from the CSV files</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">s0_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../s0_nondonor.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># Define the survival function S(t)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="k">def</span> <span class="nf">survival_function</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+
+<span class="nn">File ~/Documents/Rhythm/myenv/lib/python3.12/site-packages/pandas/io/parsers/readers.py:1026,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1013</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1014</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1015</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1022</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1023</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1024</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1026</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File ~/Documents/Rhythm/myenv/lib/python3.12/site-packages/pandas/io/parsers/readers.py:620,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">617</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">619</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">620</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">622</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">623</span>     <span class="k">return</span> <span class="n">parser</span>
+
+<span class="nn">File ~/Documents/Rhythm/myenv/lib/python3.12/site-packages/pandas/io/parsers/readers.py:1620,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1617</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1619</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1620</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="nn">File ~/Documents/Rhythm/myenv/lib/python3.12/site-packages/pandas/io/parsers/readers.py:1880,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1878</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1879</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1880</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1881</span>     <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1882</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1883</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1884</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1885</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1886</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1887</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1888</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1889</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1890</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1891</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
+
+<span class="nn">File ~/Documents/Rhythm/myenv/lib/python3.12/site-packages/pandas/io/common.py:873,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">868</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">869</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
+<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
+<span class="g g-Whitespace">    </span><span class="mi">871</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="c1"># Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">873</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">874</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">875</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">876</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">877</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">878</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">879</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">880</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">881</span>         <span class="c1"># Binary mode</span>
+<span class="g g-Whitespace">    </span><span class="mi">882</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;../s0_nondonor.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">s0_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       _st  _d         _t  _t0  s0_nondonor
+0        1   1  14.748802    0     0.788091
+1        1   0  29.927446    0     0.576725
+2        1   0  29.746748    0     0.578996
+3        1   0  19.203285    0     0.725669
+4        1   0  20.213552    0     0.711040
+...    ...  ..        ...  ...          ...
+73563    1   0   2.214921    0     0.974868
+73564    1   0   1.516769    0     0.983511
+73565    1   0   1.415469    0     0.984641
+73566    1   0   1.960301    0     0.978229
+73567    1   0   1.100616    0     0.988551
+
+[73568 rows x 5 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">lifelines</span> <span class="kn">import</span> <span class="n">KaplanMeierFitter</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Load the data from the CSV file</span>
+<span class="n">s0_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../s0_nondonor.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Create a KaplanMeierFitter object</span>
+<span class="n">kmf</span> <span class="o">=</span> <span class="n">KaplanMeierFitter</span><span class="p">()</span>
+
+<span class="c1"># Fit the Kaplan-Meier estimate to the data</span>
+<span class="n">kmf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">s0_df</span><span class="p">[</span><span class="s1">&#39;_t&#39;</span><span class="p">],</span> <span class="n">event_observed</span><span class="o">=</span><span class="n">s0_df</span><span class="p">[</span><span class="s1">&#39;_d&#39;</span><span class="p">])</span>
+
+<span class="c1"># Get the survival probabilities</span>
+<span class="n">survival_probabilities</span> <span class="o">=</span> <span class="n">kmf</span><span class="o">.</span><span class="n">survival_function_</span>
+
+<span class="c1"># Calculate the failure probabilities (1 - survival probability)</span>
+<span class="n">failure_probabilities</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">survival_probabilities</span>
+
+<span class="c1"># Plot the failure curve</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kmf</span><span class="o">.</span><span class="n">timeline</span><span class="p">,</span> <span class="n">failure_probabilities</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (_t)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Failure Probability&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Failure Curve&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ccfe2782779abf2af211ea00757eb0be4e403bd3182f2d868423506857f79635.png" src="_images/ccfe2782779abf2af211ea00757eb0be4e403bd3182f2d868423506857f79635.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+
+<span class="k">def</span> <span class="nf">black_scholes</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">option_type</span><span class="o">=</span><span class="s1">&#39;call&#39;</span><span class="p">):</span>
+    <span class="n">d1</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">S</span> <span class="o">/</span> <span class="n">K</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">T</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
+    <span class="n">d2</span> <span class="o">=</span> <span class="n">d1</span> <span class="o">-</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">option_type</span> <span class="o">==</span> <span class="s1">&#39;call&#39;</span><span class="p">:</span>
+        <span class="n">option_price</span> <span class="o">=</span> <span class="n">S</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span> <span class="o">-</span> <span class="n">K</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">r</span> <span class="o">*</span> <span class="n">T</span><span class="p">)</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">option_type</span> <span class="o">==</span> <span class="s1">&#39;put&#39;</span><span class="p">:</span>
+        <span class="n">option_price</span> <span class="o">=</span> <span class="n">K</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">r</span> <span class="o">*</span> <span class="n">T</span><span class="p">)</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="o">-</span><span class="n">d2</span><span class="p">)</span> <span class="o">-</span> <span class="n">S</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="o">-</span><span class="n">d1</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">option_price</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">S</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># Current stock price</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># Strike price</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">1</span>    <span class="c1"># Time to maturity in years</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">0.05</span> <span class="c1"># Risk-free rate</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.2</span>  <span class="c1"># Volatility</span>
+
+<span class="n">call_price</span> <span class="o">=</span> <span class="n">black_scholes</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">option_type</span><span class="o">=</span><span class="s1">&#39;call&#39;</span><span class="p">)</span>
+<span class="n">put_price</span> <span class="o">=</span> <span class="n">black_scholes</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">option_type</span><span class="o">=</span><span class="s1">&#39;put&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Call Option Price: </span><span class="si">{</span><span class="n">call_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Put Option Price: </span><span class="si">{</span><span class="n">put_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call Option Price: 10.450583572185565
+Put Option Price: 5.573526022256971
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sure, let’s dive into the derivation of the Black-Scholes formula, critique it, and then consider the implications of chaos, machine learning, and high-frequency trading, particularly in the context of Jim Simons’ success.</p>
+<section id="part-1-derivation-of-the-black-scholes-formula">
+<h3>Part 1: Derivation of the Black-Scholes Formula<a class="headerlink" href="#part-1-derivation-of-the-black-scholes-formula" title="Permalink to this heading">#</a></h3>
+<section id="setting-up-the-problem">
+<h4>1. <strong>Setting up the Problem</strong><a class="headerlink" href="#setting-up-the-problem" title="Permalink to this heading">#</a></h4>
+<p>Consider a European call option on a non-dividend-paying stock. The key variables are:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( S \)</span>: Current stock price</p></li>
+<li><p><span class="math notranslate nohighlight">\( K \)</span>: Strike price of the option</p></li>
+<li><p><span class="math notranslate nohighlight">\( T \)</span>: Time to maturity of the option</p></li>
+<li><p><span class="math notranslate nohighlight">\( r \)</span>: Risk-free interest rate</p></li>
+<li><p><span class="math notranslate nohighlight">\( \sigma \)</span>: Volatility of the stock</p></li>
+<li><p><span class="math notranslate nohighlight">\( N(x) \)</span>: Cumulative distribution function of the standard normal distribution</p></li>
+</ul>
+</section>
+<section id="assumptions">
+<h4>2. <strong>Assumptions</strong><a class="headerlink" href="#assumptions" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>The stock price follows a geometric Brownian motion:
+$<span class="math notranslate nohighlight">\(
+dS = \mu S dt + \sigma S dW
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span> \mu <span class="math notranslate nohighlight">\( is the drift rate, \)</span> \sigma <span class="math notranslate nohighlight">\( is the volatility, and \)</span> W $ is a Wiener process.</p></li>
+<li><p>No arbitrage opportunities exist.</p></li>
+<li><p>Trading is continuous, and there are no transaction costs or taxes.</p></li>
+</ul>
+</section>
+<section id="deriving-the-black-scholes-partial-differential-equation">
+<h4>3. <strong>Deriving the Black-Scholes Partial Differential Equation</strong><a class="headerlink" href="#deriving-the-black-scholes-partial-differential-equation" title="Permalink to this heading">#</a></h4>
+<p>Using Ito’s Lemma for a function <span class="math notranslate nohighlight">\( V(S,t) \)</span>, the price of the option:</p>
+<div class="math notranslate nohighlight">
+\[
+dV = \frac{\partial V}{\partial t} dt + \frac{\partial V}{\partial S} dS + \frac{1}{2} \frac{\partial^2 V}{\partial S^2} dS^2
+\]</div>
+<p>Substituting <span class="math notranslate nohighlight">\( dS \)</span> and <span class="math notranslate nohighlight">\( dS^2 = \sigma^2 S^2 dt \)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+dV = \frac{\partial V}{\partial t} dt + \frac{\partial V}{\partial S} (\mu S dt + \sigma S dW) + \frac{1}{2} \frac{\partial^2 V}{\partial S^2} \sigma^2 S^2 dt
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+dV = \left(\frac{\partial V}{\partial t} + \mu S \frac{\partial V}{\partial S} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}\right) dt + \sigma S \frac{\partial V}{\partial S} dW
+\]</div>
+<p>To eliminate the risk from the stochastic term (<span class="math notranslate nohighlight">\(dW\)</span>), construct a portfolio <span class="math notranslate nohighlight">\( \Pi \)</span> consisting of one option and <span class="math notranslate nohighlight">\(-\frac{\partial V}{\partial S}\)</span> shares of stock:</p>
+<div class="math notranslate nohighlight">
+\[
+\Pi = V - \frac{\partial V}{\partial S} S
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+d\Pi = dV - \frac{\partial V}{\partial S} dS
+\]</div>
+<p>Substitute <span class="math notranslate nohighlight">\(dV\)</span> and <span class="math notranslate nohighlight">\(dS\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+d\Pi = \left(\frac{\partial V}{\partial t} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2}\right) dt
+\]</div>
+<p>Since the portfolio is risk-free, it must grow at the risk-free rate <span class="math notranslate nohighlight">\(r\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+d\Pi = r \Pi dt
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial V}{\partial t} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} = r \left(V - S \frac{\partial V}{\partial S}\right)
+\]</div>
+<p>Rearranging:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial V}{\partial t} + rS \frac{\partial V}{\partial S} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} - rV = 0
+\]</div>
+<p>This is the Black-Scholes partial differential equation.</p>
+</section>
+<section id="solving-the-pde">
+<h4>4. <strong>Solving the PDE</strong><a class="headerlink" href="#solving-the-pde" title="Permalink to this heading">#</a></h4>
+<p>For a European call option, the terminal condition at <span class="math notranslate nohighlight">\( t = T \)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+V(S, T) = \max(S - K, 0)
+\]</div>
+<p>Using the solution for the PDE and the terminal condition, we get the Black-Scholes formula:</p>
+<div class="math notranslate nohighlight">
+\[
+C(S,t) = S N(d_1) - K e^{-r(T-t)} N(d_2)
+\]</div>
+<p>where:</p>
+<div class="math notranslate nohighlight">
+\[
+d_1 = \frac{\ln\left(\frac{S}{K}\right) + \left(r + \frac{\sigma^2}{2}\right)(T - t)}{\sigma \sqrt{T - t}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+d_2 = d_1 - \sigma \sqrt{T - t}
+\]</div>
+</section>
+</section>
+<section id="python-code-for-black-scholes-formula">
+<h3>Python Code for Black-Scholes Formula<a class="headerlink" href="#python-code-for-black-scholes-formula" title="Permalink to this heading">#</a></h3>
+<p>Here’s a Python implementation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+
+<span class="k">def</span> <span class="nf">black_scholes</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">option_type</span><span class="o">=</span><span class="s1">&#39;call&#39;</span><span class="p">):</span>
+    <span class="n">d1</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">S</span> <span class="o">/</span> <span class="n">K</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">T</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
+    <span class="n">d2</span> <span class="o">=</span> <span class="n">d1</span> <span class="o">-</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">option_type</span> <span class="o">==</span> <span class="s1">&#39;call&#39;</span><span class="p">:</span>
+        <span class="n">option_price</span> <span class="o">=</span> <span class="n">S</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span> <span class="o">-</span> <span class="n">K</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">r</span> <span class="o">*</span> <span class="n">T</span><span class="p">)</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">option_type</span> <span class="o">==</span> <span class="s1">&#39;put&#39;</span><span class="p">:</span>
+        <span class="n">option_price</span> <span class="o">=</span> <span class="n">K</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">r</span> <span class="o">*</span> <span class="n">T</span><span class="p">)</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="o">-</span><span class="n">d2</span><span class="p">)</span> <span class="o">-</span> <span class="n">S</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="o">-</span><span class="n">d1</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">option_price</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">S</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># Current stock price</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># Strike price</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">1</span>    <span class="c1"># Time to maturity in years</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">0.05</span> <span class="c1"># Risk-free rate</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.2</span>  <span class="c1"># Volatility</span>
+
+<span class="n">call_price</span> <span class="o">=</span> <span class="n">black_scholes</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">option_type</span><span class="o">=</span><span class="s1">&#39;call&#39;</span><span class="p">)</span>
+<span class="n">put_price</span> <span class="o">=</span> <span class="n">black_scholes</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">option_type</span><span class="o">=</span><span class="s1">&#39;put&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Call Option Price: </span><span class="si">{</span><span class="n">call_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Put Option Price: </span><span class="si">{</span><span class="n">put_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="part-2-critique-of-the-black-scholes-formula">
+<h3>Part 2: Critique of the Black-Scholes Formula<a class="headerlink" href="#part-2-critique-of-the-black-scholes-formula" title="Permalink to this heading">#</a></h3>
+<section id="assumptions-and-real-world-market-conditions">
+<h4>1. <strong>Assumptions and Real-World Market Conditions</strong><a class="headerlink" href="#assumptions-and-real-world-market-conditions" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Constant Volatility</strong>: The Black-Scholes model assumes constant volatility, which is unrealistic. Volatility can change over time due to market conditions, leading to the development of models like the Heston model.</p></li>
+<li><p><strong>Log-Normal Distribution</strong>: The model assumes that stock prices follow a log-normal distribution, which ignores fat tails and the probability of extreme events (black swans).</p></li>
+<li><p><strong>No Dividends</strong>: The basic model does not account for dividends, although extensions can incorporate this.</p></li>
+<li><p><strong>Continuous Trading</strong>: Assumes continuous trading, ignoring the realities of market microstructure and potential liquidity issues.</p></li>
+<li><p><strong>No Transaction Costs</strong>: Ignores transaction costs and taxes, which can impact hedging strategies and option pricing.</p></li>
+</ul>
+</section>
+<section id="model-risk-and-calibration">
+<h4>2. <strong>Model Risk and Calibration</strong><a class="headerlink" href="#model-risk-and-calibration" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Parameter Estimation</strong>: Estimating volatility and other parameters can be challenging and can lead to significant errors in pricing.</p></li>
+<li><p><strong>Static Hedging</strong>: The model relies on the ability to continuously hedge, which is impractical in real markets with discrete trading times.</p></li>
+</ul>
+</section>
+</section>
+<section id="part-3-jim-simons-chaos-and-machine-learning-in-the-stock-market">
+<h3>Part 3: Jim Simons, Chaos, and Machine Learning in the Stock Market<a class="headerlink" href="#part-3-jim-simons-chaos-and-machine-learning-in-the-stock-market" title="Permalink to this heading">#</a></h3>
+<p>Jim Simons, the founder of Renaissance Technologies, has achieved remarkable success in the stock market through the application of sophisticated quantitative techniques and machine learning algorithms. Let’s break down the key components:</p>
+<section id="chaos-and-digital-data">
+<h4>1. <strong>Chaos and Digital Data</strong><a class="headerlink" href="#chaos-and-digital-data" title="Permalink to this heading">#</a></h4>
+<p>The stock market generates vast amounts of data, often viewed as chaotic. Traditional models like the Efficient Market Hypothesis (EMH) argue that markets are random and all information is already priced in, leaving no room for predictable patterns.</p>
+</section>
+<section id="compute-and-machine-learning">
+<h4>2. <strong>Compute and Machine Learning</strong><a class="headerlink" href="#compute-and-machine-learning" title="Permalink to this heading">#</a></h4>
+<p>Simons’ approach leverages the power of modern computational resources, including GPUs, to process and analyze this data. Machine learning models, especially deep learning, thrive on large datasets and can identify subtle patterns that are invisible to human analysts.</p>
+</section>
+<section id="high-frequency-trading-hft">
+<h4>3. <strong>High-Frequency Trading (HFT)</strong><a class="headerlink" href="#high-frequency-trading-hft" title="Permalink to this heading">#</a></h4>
+<p>HFT strategies exploit tiny price discrepancies in milliseconds, requiring massive computational power and low-latency networks. Renaissance Technologies has been at the forefront of developing such strategies.</p>
+</section>
+<section id="complex-algorithms-and-feedback">
+<h4>4. <strong>Complex Algorithms and Feedback</strong><a class="headerlink" href="#complex-algorithms-and-feedback" title="Permalink to this heading">#</a></h4>
+<p>Simons’ algorithms are highly complex, with thousands to millions of parameters. These models continuously update and learn from new data, improving their accuracy and adapting to changing market conditions. This approach contrasts with the EMH’s view of markets as purely random.</p>
+</section>
+</section>
+<section id="critique-of-emh-in-light-of-simons-success">
+<h3>Critique of EMH in Light of Simons’ Success<a class="headerlink" href="#critique-of-emh-in-light-of-simons-success" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Pattern Recognition</strong>: Simons’ success suggests that there are exploitable patterns in market data, challenging the EMH’s assertion of market efficiency.</p></li>
+<li><p><strong>Behavioral Finance</strong>: Human behavior and psychology can lead to predictable market anomalies, which machine learning models can exploit.</p></li>
+<li><p><strong>Adaptive Markets Hypothesis</strong>: This theory, proposed by Andrew Lo, suggests that markets evolve and adapt, with periods of inefficiency that can be exploited by advanced algorithms.</p></li>
+</ul>
+</section>
+<section id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h3>
+<p>The derivation of the Black-Scholes formula demonstrates the power of mathematical finance, but its assumptions limit its real-world applicability. Jim Simons’ success highlights the potential of chaos theory, machine learning, and advanced computational techniques to uncover patterns in ostensibly efficient markets. This fusion of chaos and computation represents the cutting edge of modern finance, challenging traditional theories and opening new avenues for exploration and profit.</p>
+<p>The relationship between <span class="math notranslate nohighlight">\(d_1\)</span> and <span class="math notranslate nohighlight">\(d_2\)</span> in the Black-Scholes formula is crucial for understanding the pricing of options. Let’s delve deeper into why <span class="math notranslate nohighlight">\(d_2 = d_1 - \sigma \sqrt{T - t}\)</span> holds.</p>
+</section>
+<section id="derivation-of-d-2-from-d-1">
+<h3>Derivation of <span class="math notranslate nohighlight">\(d_2\)</span> from <span class="math notranslate nohighlight">\(d_1\)</span><a class="headerlink" href="#derivation-of-d-2-from-d-1" title="Permalink to this heading">#</a></h3>
+<p>First, let’s recall the definitions of <span class="math notranslate nohighlight">\(d_1\)</span> and <span class="math notranslate nohighlight">\(d_2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+d_1 = \frac{\ln\left(\frac{S}{K}\right) + \left(r + \frac{\sigma^2}{2}\right)(T - t)}{\sigma \sqrt{T - t}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+d_2 = \frac{\ln\left(\frac{S}{K}\right) + \left(r - \frac{\sigma^2}{2}\right)(T - t)}{\sigma \sqrt{T - t}}
+\]</div>
+<p>To see the relationship between <span class="math notranslate nohighlight">\(d_1\)</span> and <span class="math notranslate nohighlight">\(d_2\)</span>, let’s rewrite <span class="math notranslate nohighlight">\(d_2\)</span> in terms of <span class="math notranslate nohighlight">\(d_1\)</span>.</p>
+<ol class="arabic simple">
+<li><p>Start with the expression for <span class="math notranslate nohighlight">\(d_1\)</span>:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+d_1 = \frac{\ln\left(\frac{S}{K}\right) + \left(r + \frac{\sigma^2}{2}\right)(T - t)}{\sigma \sqrt{T - t}}
+\]</div>
+<ol class="arabic simple" start="2">
+<li><p>Let’s rewrite <span class="math notranslate nohighlight">\(d_2\)</span>:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+d_2 = \frac{\ln\left(\frac{S}{K}\right) + \left(r - \frac{\sigma^2}{2}\right)(T - t)}{\sigma \sqrt{T - t}}
+\]</div>
+<ol class="arabic simple" start="3">
+<li><p>Now, compare the numerators of <span class="math notranslate nohighlight">\(d_1\)</span> and <span class="math notranslate nohighlight">\(d_2\)</span>:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\text{Numerator of } d_1 = \ln\left(\frac{S}{K}\right) + \left(r + \frac{\sigma^2}{2}\right)(T - t)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\text{Numerator of } d_2 = \ln\left(\frac{S}{K}\right) + \left(r - \frac{\sigma^2}{2}\right)(T - t)
+\]</div>
+<ol class="arabic simple" start="4">
+<li><p>Notice that the only difference between these numerators is the sign of the <span class="math notranslate nohighlight">\(\frac{\sigma^2}{2}(T - t)\)</span> term. Hence, we can write:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\text{Numerator of } d_2 = \left[\ln\left(\frac{S}{K}\right) + \left(r + \frac{\sigma^2}{2}\right)(T - t)\right] - \sigma^2 (T - t)
+\]</div>
+<ol class="arabic simple" start="5">
+<li><p>Substitute this back into the expression for <span class="math notranslate nohighlight">\(d_2\)</span>:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+d_2 = \frac{\left[\ln\left(\frac{S}{K}\right) + \left(r + \frac{\sigma^2}{2}\right)(T - t)\right] - \sigma^2 (T - t)}{\sigma \sqrt{T - t}}
+\]</div>
+<ol class="arabic simple" start="6">
+<li><p>We know that the numerator of <span class="math notranslate nohighlight">\(d_1\)</span> is:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\ln\left(\frac{S}{K}\right) + \left(r + \frac{\sigma^2}{2}\right)(T - t)
+\]</div>
+<p>So, we can express <span class="math notranslate nohighlight">\(d_2\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[
+d_2 = \frac{\text{Numerator of } d_1 - \sigma^2 (T - t)}{\sigma \sqrt{T - t}}
+\]</div>
+<ol class="arabic simple" start="7">
+<li><p>Factor out the <span class="math notranslate nohighlight">\(\sigma\)</span> term in the numerator:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+d_2 = \frac{\text{Numerator of } d_1}{\sigma \sqrt{T - t}} - \frac{\sigma^2 (T - t)}{\sigma \sqrt{T - t}}
+\]</div>
+<ol class="arabic simple" start="8">
+<li><p>Simplify the second term:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+d_2 = d_1 - \sigma \sqrt{T - t}
+\]</div>
+</section>
+<section id="id1">
+<h3>Conclusion<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Thus, we have shown that:</p>
+<div class="math notranslate nohighlight">
+\[
+d_2 = d_1 - \sigma \sqrt{T - t}
+\]</div>
+<p>This relationship is fundamental in the Black-Scholes formula because it connects the probabilities of the option finishing in the money with and without considering volatility over the time period. It simplifies the calculations and helps in understanding the option’s pricing dynamics.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Myenv</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="r.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">R</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#my-fave-dag">My fave DAG</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-derivation-of-the-black-scholes-formula">Part 1: Derivation of the Black-Scholes Formula</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-problem">1. <strong>Setting up the Problem</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions">2. <strong>Assumptions</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-the-black-scholes-partial-differential-equation">3. <strong>Deriving the Black-Scholes Partial Differential Equation</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-the-pde">4. <strong>Solving the PDE</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-code-for-black-scholes-formula">Python Code for Black-Scholes Formula</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-critique-of-the-black-scholes-formula">Part 2: Critique of the Black-Scholes Formula</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions-and-real-world-market-conditions">1. <strong>Assumptions and Real-World Market Conditions</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#model-risk-and-calibration">2. <strong>Model Risk and Calibration</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-jim-simons-chaos-and-machine-learning-in-the-stock-market">Part 3: Jim Simons, Chaos, and Machine Learning in the Stock Market</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#chaos-and-digital-data">1. <strong>Chaos and Digital Data</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-and-machine-learning">2. <strong>Compute and Machine Learning</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#high-frequency-trading-hft">3. <strong>High-Frequency Trading (HFT)</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-algorithms-and-feedback">4. <strong>Complex Algorithms and Feedback</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#critique-of-emh-in-light-of-simons-success">Critique of EMH in Light of Simons’ Success</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#derivation-of-d-2-from-d-1">Derivation of <span class="math notranslate nohighlight">\(d_2\)</span> from <span class="math notranslate nohighlight">\(d_1\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Zeus
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
