@@ -54,7 +54,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-cd local/kitabo/ensi && git push -u origin main
+git push -u origin main
 if [ $? -ne 0 ]; then
   echo "Failed to push to the repository. Check your credentials and GitHub permissions."
   exit 1

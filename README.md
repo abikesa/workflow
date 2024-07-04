@@ -1,168 +1,138 @@
 
-## MCR
 
-```sh
-              1. Pagan
-                      \
-  2. Joir de vivre -> 4. Oratorio -> 5. Asceticism -> Christian
-                      /
-                      3. Opera
+```stata
+qui {
+	cls
+	use ${repo}transplants, clear
+    ds, not(type string)  
+	global threshold 9  
+	putexcel set levelsof, replace 
+	local row=2
+    foreach v of varlist age gender race { //`r(varlist)'
+	    levelsof `v', local(numlevels)
+	    if r(r) == 2 {  
+			putexcel A`row' = ("`v'") B`row' = ("per")
+			noi di  _col(1)    "`v'"  _col(30)  "per"
+			local row = `row' + 1
+	    }
+	    else if inrange(`r(r)', 3, $threshold) {  
+			putexcel A`row' = ("`v', %") B`row' = ("")
+			noi di   _col(1)   "`v', %" _col(30)   ""
+			foreach l of numlist `numlevels' {
+				local row = `row' + 1
+                putexcel A`row' = ("    catlab") B`row' = ("per")
+				noi di  _col(1)    "    catlab" _col(30)   "per"
+			}	
+	    }
+	    else {  
+			putexcel A`row' = ("`v'") B`row' = ("m_iqr")
+			noi di   _col(1)   "`v'"  _col(30)  "m_iqr"
+			local row = `row' + 1
+	    }
+		
+    }
+	
+}
+
+
 ```
 
-Mozart placed a premium on `melody`, crafting pieces where the beauty and clarity of the melodic line are paramount. His genius lies in how effortlessly his melodies soar, supported by sophisticated yet accessible harmonic structures.
+Got it. To work 100% from .ipynb files in VSCode, we need to ensure that the Jupyter server runs in the background and that the Jupyter extension in VSCode automatically connects to it. Here’s the script tailored for this workflow:
 
-Bach's brilliance is in his intricate `polyphony`. The way he weaves multiple independent melodic lines together is nothing short of miraculous. Each line maintains its own integrity while contributing to a complex and harmonious whole. This kind of musical conversation, with elements like counterpoint and fugue, showcases a deep, almost mathematical understanding of harmony and structure.
-
-Handel, on the other hand, does focus on `rhythm` and drama, which is evident in his operas and oratorios. His music often relies on bold, clear gestures and rhythmic drive to convey emotional depth and grandeur. This rhythmic emphasis can indeed achieve a potent impact with fewer elements, drawing listeners into the dramatic essence of his compositions.
-
----
-
-
-> *We are all `riffing` off the same [melody](https://www.instagram.com/reel/C7lvO2lSnEk/?utm_source=ig_web_copy_link) - Jensen Huang*
-
-<a href="https://book.the-turing-way.org/welcome.html"><img src="https://static.dw.com/image/62054308_1004.webp" width="500" align="Right" /></a>
+### Complete Script for Setting Up Stata and R Kernels for VSCode
 
 ```sh
-find local -type f -exec du -h {} + | sort -rh | head -n 10
+#!/bin/bash
+
+# Set up variables
+VENV_PATH="/Users/hades/Documents/hades/myenv"
+STATA_PATH="/Applications/Stata/StataMP.app/Contents/MacOS/stata-mp"
+ZSHRC_PATH="$HOME/.zshrc"
+
+# Step 1: Remove existing virtual environment if it exists
+echo "Removing existing virtual environment..."
+rm -rf $VENV_PATH
+
+# Step 2: Create a new virtual environment
+echo "Creating a new virtual environment..."
+python3 -m venv $VENV_PATH
+
+# Step 3: Activate the virtual environment
+echo "Activating the virtual environment..."
+source $VENV_PATH/bin/activate
+
+# Step 4: Install necessary packages for Python
+echo "Installing necessary packages for Python..."
+pip install stata_kernel ipykernel setuptools notebook
+
+# Step 5: Configure environment variable for Stata path
+echo "Configuring environment variable for Stata path..."
+if [ ! -f $ZSHRC_PATH ]; then
+    touch $ZSHRC_PATH
+fi
+grep -qxF "export STATA_KERNEL_STATA_PATH=$STATA_PATH" $ZSHRC_PATH || echo "export STATA_KERNEL_STATA_PATH=$STATA_PATH" >> $ZSHRC_PATH
+source $ZSHRC_PATH
+
+# Step 6: Install the Stata kernel
+echo "Installing the Stata kernel..."
+python -m stata_kernel.install
+
+# Step 7: Install IRkernel for R
+echo "Installing IRkernel for R..."
+Rscript -e "install.packages('IRkernel')"
+Rscript -e "IRkernel::installspec(user = FALSE)"
+
+# Step 8: Start Jupyter Notebook server in the background
+echo "Starting Jupyter Notebook server in the background..."
+nohup jupyter notebook --no-browser --NotebookApp.token='' --NotebookApp.password='' > jupyter.log 2>&1 &
+
+# Wait for the Jupyter server to start
+sleep 5
+
+echo "Setup complete! You can now open .ipynb files directly in VSCode and use the Stata and R kernels."
 ```
 
-```sh
-      1. Probabilistic
-                      \
-  2. Neuronetworks -> 4. Central -> 5. Algorithms -> Deterministic
-                      /
-                      3. Graphical
-```
+### Instructions to Use the Script
 
-### Linear: Dionysus 1, 2, 3
-### Categorical: Sing O Muse 4
-### Binary: Apollo 5, 6
+1. **Save the Script**:
+   - Save the script to a file, for example, `setup_stata_r_kernel.sh`.
 
-# _Oscar Wilde_
+2. **Make the Script Executable**:
+   - Make the script executable by running the following command:
 
-```sh
-Rhythm
-├── local
-│   ├── 1-chaos
-│   ├── 1-pessimism.cff
-│   ├── 2-bge.md
-│   ├── 2-frenzy
-│   ├── 3-energy
-│   ├── 3.robustness.md
-│   ├── 4-dionysian
-│   ├── 4-dionysus.md
-│   ├── 5-algorithm
-│   ├── 5-science.md
-│   ├── 6-binary
-│   ├── 6-morality.md
-│   ├── README.md
-│   ├── _chords.md
-│   ├── _modes.md
-│   ├── frontier.png
-│   ├── kitabo
-│   │   ├── Makefile
-│   │   ├── README.md
-│   │   ├── ensi
-│   │   │   ├── LICENSE.md
-│   │   │   ├── _bibliography
-│   │   │   ├── _build
-│   │   │   ├── _config.yml
-│   │   │   ├── _static
-│   │   │   ├── _toc.yml
-│   │   │   ├── afterword
-│   │   │   ├── analytics
-│   │   │   ├── bach.pdf
-│   │   │   ├── collaboration
-│   │   │   ├── communication
-│   │   │   ├── community-handbook
-│   │   │   ├── ethical-research
-│   │   │   ├── figures
-│   │   │   ├── foreword
-│   │   │   │   ├── README.md
-│   │   │   │   ├── _chords.md
-│   │   │   │   ├── _modes.md
-│   │   │   │   ├── amazing.md
-│   │   │   │   ├── app
-│   │   │   │   │   ├── README.md
-│   │   │   │   │   ├── assets
-│   │   │   │   │   ├── css
-│   │   │   │   │   └── risk.html
-│   │   │   │   ├── background.md
-│   │   │   │   ├── bounce.md
-│   │   │   │   ├── cite.md
-│   │   │   │   ├── community.md
-│   │   │   │   ├── critical.md
-│   │   │   │   ├── drills.md
-│   │   │   │   ├── embracing-digital-commons.md
-│   │   │   │   ├── emergent-strategy.md
-│   │   │   │   ├── engagement.md
-│   │   │   │   ├── faqs.md
-│   │   │   │   ├── foreword.md
-│   │   │   │   ├── frontier.png
-│   │   │   │   ├── funk.md
-│   │   │   │   ├── genre.md
-│   │   │   │   ├── governance.md
-│   │   │   │   ├── history.md
-│   │   │   │   ├── index.md
-│   │   │   │   ├── inference.md
-│   │   │   │   ├── jsbach.md
-│   │   │   │   ├── kenny.md
-│   │   │   │   ├── literature.md
-│   │   │   │   ├── mcr.md
-│   │   │   │   ├── modes.md
-│   │   │   │   ├── navigate.md
-│   │   │   │   ├── nietzsche.md
-│   │   │   │   ├── oldreadme.md
-│   │   │   │   ├── purple.md
-│   │   │   │   ├── qualities.md
-│   │   │   │   ├── readme2.md
-│   │   │   │   ├── recentreadme.md
-│   │   │   │   ├── reverence.md
-│   │   │   │   ├── sample.md
-│   │   │   │   ├── tokens.md
-│   │   │   │   ├── universal.md
-│   │   │   │   ├── voicing.md
-│   │   │   │   ├── wicked.md
-│   │   │   │   ├── xpected.md
-│   │   │   │   └── yourstruly.md
-│   │   │   ├── foreword.md
-│   │   │   ├── handel.pdf
-│   │   │   ├── index.md
-│   │   │   ├── mozart.pdf
-│   │   │   ├── profiles.yml
-│   │   │   ├── project-design
-│   │   │   ├── reproducible-research
-│   │   │   ├── requirements.in
-│   │   │   ├── requirements.txt
-│   │   │   ├── runtime.txt
-│   │   │   └── scripts
-│   │   ├── templates
-│   │   │   ├── (contents of templates)
-│   ├── lychee.toml
-│   ├── netlify.toml
-├── myenv
-│   ├── (contents of myenv)
-└── new
-    ├── (contents of new)
-```
+   ```sh
+   chmod +x setup_stata_r_kernel.sh
+   ```
 
-## [Mozart at 200](https://abikesa.github.io/haydn/part1/part1.html)
+3. **Run the Script**:
+   - Run the script by executing:
 
-```sh
+   ```sh
+   ./setup_stata_r_kernel.sh
+   ```
 
-         1. Aria
-                \
-2. Leitmotif -> 4. Polyphony -> 5. Rhythm -> 6. Fugue 
-                /
-                3. Melody
+### Explanation and How to Use in VSCode
 
+- **Step 1**: The script removes any existing virtual environment to ensure a fresh setup.
+- **Step 2**: A new virtual environment is created.
+- **Step 3**: The virtual environment is activated.
+- **Step 4**: Necessary Python packages (`stata_kernel`, `ipykernel`, `setuptools`, `notebook`) are installed.
+- **Step 5**: The environment variable for the Stata path is set up.
+- **Step 6**: The Stata kernel is installed.
+- **Step 7**: The IRkernel for R is installed.
+- **Step 8**: The Jupyter Notebook server is started in the background with no authentication required (`--NotebookApp.token='' --NotebookApp.password=''`).
 
+### Working with .ipynb Files in VSCode
 
-      1. Prognostic
-                   \
-2. Neuronetowrk -> 4. Error-Mystery-Laughter-Terror -> 5. Categorical -> 6. Diagnostic
-                   / 
-                   3. Log-linear
-```
+After running the script, follow these steps:
 
-> *Mozart did not know the world of classical antiquity but he knew a great deal of music, from old church composers to Bach and Handel, from Salzburg serenade to Italian opera. `All this he embraced because he could control it`*
+1. **Open VSCode**:
+   - Open VSCode and ensure the Jupyter extension is installed.
+
+2. **Open or Create Jupyter Notebooks**:
+   - Open an existing `.ipynb` file or create a new one.
+
+3. **Select Kernel**:
+   - When you open a notebook, click on the kernel name at the top right and select the appropriate kernel (Stata or R).
+
+VSCode should automatically connect to the running Jupyter server in the background. This setup ensures that you can work entirely within VSCode, using the provided kernels without needing to interact with the browser-based Jupyter interface.
