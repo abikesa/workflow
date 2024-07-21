@@ -11,7 +11,7 @@ cd ~/$ROOT_DIR && rm -rf * && git clone https://github.com/abikesa/workflow && m
 
 # template as starting point
 read -p "Enter template GitHub repository name (default: template-repo): " REPO_NAME
-REPO_NAME=${REPO_NAME:-template-repo}
+REPO_NAME=${REPO_NAME:-haydn}
 
 git clone https://github.com/abikesa/$REPO_NAME
 mv $REPO_NAME local
