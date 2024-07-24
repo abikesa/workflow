@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Change to the morality directory
-cd morality
+# cd morality
 
 # Loop through all items in the directory
 for item in *; do
