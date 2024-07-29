@@ -484,6 +484,97 @@ document.write(`
 <img alt="_images/1f3987af66a299f02d0b614c3b7bde594f83c09e5c347344fedfbaaad3fe8030.png" src="_images/1f3987af66a299f02d0b614c3b7bde594f83c09e5c347344fedfbaaad3fe8030.png" />
 </div>
 </div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Function to draw a hub and spoke diagram with specified node sizes and lengths</span>
+<span class="k">def</span> <span class="nf">draw_hub_and_spoke</span><span class="p">(</span><span class="n">hub_size</span><span class="p">,</span> <span class="n">spoke_specs</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="c1"># Define the hub position</span>
+    <span class="n">hub</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    
+    <span class="c1"># Create the figure and axis</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    
+    <span class="c1"># Draw the hub</span>
+    <span class="n">hub_circle</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span><span class="n">hub</span><span class="p">,</span> <span class="n">hub_size</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">hub_circle</span><span class="p">)</span>
+    
+    <span class="c1"># Draw the spokes</span>
+    <span class="k">for</span> <span class="n">angle</span><span class="p">,</span> <span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span> <span class="ow">in</span> <span class="n">spoke_specs</span><span class="p">:</span>
+        <span class="c1"># Calculate spoke position based on angle and length</span>
+        <span class="n">spoke</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">length</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span> <span class="n">length</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)])</span>
+        
+        <span class="c1"># Draw line from hub to spoke</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">hub</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">spoke</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">hub</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">spoke</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="s1">&#39;k-&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="c1"># Draw spoke node</span>
+        <span class="n">spoke_circle</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span><span class="n">spoke</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">spoke_circle</span><span class="p">)</span>
+    
+    <span class="c1"># Set aspect of the plot to be equal</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Hide axes</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Set limits to make sure everything fits in the plot</span>
+    <span class="n">max_extent</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">length</span> <span class="k">for</span> <span class="n">angle</span><span class="p">,</span> <span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span> <span class="ow">in</span> <span class="n">spoke_specs</span><span class="p">)</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="n">size</span> <span class="k">for</span> <span class="n">angle</span><span class="p">,</span> <span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span> <span class="ow">in</span> <span class="n">spoke_specs</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="n">max_extent</span><span class="p">,</span> <span class="n">max_extent</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="n">max_extent</span><span class="p">,</span> <span class="n">max_extent</span><span class="p">])</span>
+    
+    <span class="c1"># Save the plot to a file</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Show the plot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">hub_size</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># Specify the angles (in radians), lengths, and sizes for each spoke in clockwise order</span>
+<span class="n">spoke_specs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">2.3</span><span class="p">,</span> <span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)),</span> <span class="c1"># first     </span>
+    <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">7</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)),</span> <span class="c1"># 2nd           </span>
+    <span class="p">(</span><span class="mi">7</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">3.8</span><span class="p">,</span> <span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)),</span> <span class="c1"># 3rd</span>
+    <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">1.75</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)),</span>   <span class="c1"># 4th </span>
+    <span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">3.6</span><span class="p">,</span> <span class="p">(</span><span class="mf">3.9</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)),</span> <span class="c1"># 3rd  </span>
+    <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span> <span class="mf">.97</span><span class="p">,</span> <span class="p">(</span><span class="mf">2.7</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)),</span>        <span class="c1"># 2nd  </span>
+    <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">4.2</span><span class="p">,</span> <span class="p">(</span><span class="mf">3.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">))</span> <span class="c1"># last  </span>
+<span class="p">]</span>
+
+<span class="c1"># Specify the filename to save the plot</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;hub_and_spoke.png&quot;</span>
+
+<span class="c1"># Call the function to draw the hub and spoke diagram and save it to a file</span>
+<span class="n">draw_hub_and_spoke</span><span class="p">(</span><span class="n">hub_size</span><span class="p">,</span> <span class="n">spoke_specs</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/0826c9ea7dcb47cb14237cd4d19ae2df0ab6853ffdcc6f9af7c7a6d9f6901c0f.png" src="_images/0826c9ea7dcb47cb14237cd4d19ae2df0ab6853ffdcc6f9af7c7a6d9f6901c0f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.141592653589793
+</pre></div>
+</div>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {

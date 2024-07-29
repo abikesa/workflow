@@ -358,7 +358,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -374,6 +376,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perplexity-ai">Perplexity.ai</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -508,6 +518,188 @@ document.write(`
 </div>
 </div>
 <p><img alt="" src="_images/stata.png" /></p>
+<iframe src="https://www.youtube.com/embed/mxS8YbA-Zyw" style="width:100%; height:600px"></iframe><section id="perplexity-ai">
+<h2><a class="reference external" href="http://Perplexity.ai">Perplexity.ai</a><a class="headerlink" href="#perplexity-ai" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> https:<span class="o">//</span>www<span class="m">.</span>stata<span class="o">-</span>press<span class="m">.</span>com<span class="o">/</span>data<span class="o">/</span>r18<span class="o">/</span>drugtr,<span class="k"> clear</span>
+<span class="k">qui stset</span> studytime, failure(died)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Patient survival in drug trial)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">qui kdensity</span> studytime<span class="k"> if</span> drug<span class="o">==</span><span class="m">0</span>, addplot(kdensity studytime<span class="k"> if</span> drug<span class="o">==</span><span class="m">1</span>)
+<span class="k">qui graph</span> export pdf<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="" src="_images/pdf.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">qui sts graph</span>,<span class="k"> by</span>(drug)
+<span class="k">graph</span> export surv<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>file surv.png written in PNG format
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="" src="_images/surv.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">qui sts graph</span>,<span class="k"> by</span>(drug) ha
+<span class="k">graph</span> export haz<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>file haz.png written in PNG format
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="" src="_images/haz.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">qui stcox</span> drug age
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">qui estat</span> phtest, detail
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">qui stcox</span> drug age, tvc(age)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">qui stcox</span> drug age, tvc(age) texp(<span class="nf">ln</span>(_t))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">estimates</span> store model1
+<span class="k">qui stcox</span> drug age
+<span class="k">estimates</span> store model2
+<span class="k">qui lrtest</span> model1 model2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">qui</span> {
+<span class="k">    predict</span> hr, hr
+<span class="k">    twoway</span> (line hr _t<span class="k"> if</span> drug<span class="o">==</span><span class="m">0</span>) (line hr _t<span class="k"> if</span> drug<span class="o">==</span><span class="m">1</span>), <span class="cs">///</span>
+       legend(order(<span class="m">1</span> <span class="s">&quot;Control&quot;</span> <span class="m">2</span> <span class="s">&quot;Treatment&quot;</span>))
+<span class="k">    qui graph</span> export tvc<span class="m">.</span>png,<span class="k"> replace</span>
+}
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>file /Users/apollo/.stata_kernel_cache/graph1.svg saved as SVG format
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>file /Users/apollo/.stata_kernel_cache/graph1.pdf saved as PDF format
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="" src="_images/tvc.png" /></p>
+<p>To help build intuition around Cox regression with time interaction in Stata, I can provide some example code and explanations. Here’s a step-by-step approach:</p>
+<ol class="arabic simple">
+<li><p>Set up the data:</p></li>
+</ol>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> https:<span class="o">//</span>www<span class="m">.</span>stata<span class="o">-</span>press<span class="m">.</span>com<span class="o">/</span>data<span class="o">/</span>r18<span class="o">/</span>drugtr,<span class="k"> clear</span>
+<span class="k">stset</span> studytime, failure(died)
+</pre></div>
+</div>
+<p>This loads a sample dataset about patient survival in a drug trial and sets up the survival-time data[5].</p>
+<ol class="arabic simple" start="2">
+<li><p>Run a basic Cox model:</p></li>
+</ol>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">stcox</span> drug age
+</pre></div>
+</div>
+<p>This fits a simple Cox model with drug treatment and age as covariates[5].</p>
+<ol class="arabic simple" start="3">
+<li><p>Add a time interaction for age:</p></li>
+</ol>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">stcox</span> drug age, tvc(age)
+</pre></div>
+</div>
+<p>This model includes a time-varying coefficient for age. The <code class="docutils literal notranslate"><span class="pre">tvc()</span></code> option specifies that age should interact with time[5].</p>
+<ol class="arabic simple" start="4">
+<li><p>Interpret the results:</p></li>
+</ol>
+<p>The output will show coefficients for drug, age, and age interacted with time. If the interaction term is significant, it suggests the effect of age on hazard varies over time, potentially violating the proportional hazards assumption[5].</p>
+<ol class="arabic simple" start="5">
+<li><p>Visualize the time-varying effect:</p></li>
+</ol>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">predict</span> hr, hr
+<span class="k">twoway</span> (line hr _t<span class="k"> if</span> drug<span class="o">==</span><span class="m">0</span>) (line hr _t<span class="k"> if</span> drug<span class="o">==</span><span class="m">1</span>), <span class="cs">///</span>
+       legend(order(<span class="m">1</span> <span class="s">&quot;Control&quot;</span> <span class="m">2</span> <span class="s">&quot;Treatment&quot;</span>))
+</pre></div>
+</div>
+<p>This plots the predicted hazard ratios over time for both treatment groups[1].</p>
+<ol class="arabic simple" start="6">
+<li><p>Test the proportional hazards assumption:</p></li>
+</ol>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">estat</span> phtest, detail
+</pre></div>
+</div>
+<p>This performs a formal test of the proportional hazards assumption[1].</p>
+<ol class="arabic simple" start="7">
+<li><p>Explore different time functions:</p></li>
+</ol>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">stcox</span> drug age, tvc(age) texp(<span class="nf">ln</span>(_t))
+</pre></div>
+</div>
+<p>This uses a logarithmic function of time for the interaction. You can experiment with different functions to see how they affect the model[5].</p>
+<ol class="arabic simple" start="8">
+<li><p>Compare models:</p></li>
+</ol>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">estimates</span> store model1
+<span class="k">stcox</span> drug age
+<span class="k">estimates</span> store model2
+<span class="k">lrtest</span> model1 model2
+</pre></div>
+</div>
+<p>This compares the model with time interaction to the simpler model using a likelihood ratio test[2].</p>
+<p>By working through these steps, you can gain intuition about how time interactions work in Cox regression, how they affect model interpretation, and how to assess their importance. Remember that the choice of time function can significantly impact results, so it’s important to consider the theoretical justification for any particular specification[1][5].</p>
+<p>Citations:
+[1] <a class="reference external" href="http://pauldickman.com/video/interactions/interactions_stata.pdf">http://pauldickman.com/video/interactions/interactions_stata.pdf</a>
+[2] <a class="reference external" href="https://www.statalist.org/forums/forum/general-stata-discussion/general/638949-cox-regression-interaction-interpretation">https://www.statalist.org/forums/forum/general-stata-discussion/general/638949-cox-regression-interaction-interpretation</a>
+[3] <a class="reference external" href="https://www.youtube.com/watch?v=mxS8YbA-Zyw">https://www.youtube.com/watch?v=mxS8YbA-Zyw</a>
+[4] <a class="reference external" href="https://www.stata.com/support/faqs/statistics/estimate-cox-model/">https://www.stata.com/support/faqs/statistics/estimate-cox-model/</a>
+[5] <a class="reference external" href="https://www.stata.com/manuals/ststcox.pdf">https://www.stata.com/manuals/ststcox.pdf</a></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -564,6 +756,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perplexity-ai">Perplexity.ai</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
