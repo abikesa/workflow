@@ -382,6 +382,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perplexity-ai">Perplexity.ai</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nhanes">NHANES</a></li>
 </ul>
             </nav>
         </div>
@@ -700,6 +701,33 @@ document.write(`
 [4] <a class="reference external" href="https://www.stata.com/support/faqs/statistics/estimate-cox-model/">https://www.stata.com/support/faqs/statistics/estimate-cox-model/</a><br />
 [5] <a class="reference external" href="https://www.stata.com/manuals/ststcox.pdf">https://www.stata.com/manuals/ststcox.pdf</a></p>
 </section>
+<section id="nhanes">
+<h2>NHANES<a class="headerlink" href="#nhanes" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="m">0</span> {
+<span class="k">    do</span> https:<span class="o">//</span>raw<span class="m">.</span>githubusercontent<span class="m">.</span>com<span class="o">/</span>abikesa<span class="o">/</span>workflow<span class="o">/</span>main<span class="o">/</span>nhanes_fena<span class="m">.</span>ado
+<span class="k">    forvalues</span> i=<span class="m">1</span><span class="o">/</span><span class="m">4</span> {
+<span class="k">        qui</span> nhanes_fena, ys(<span class="m">1999</span>) ye(<span class="m">2018</span>)<span class="k"> ds</span>(<span class="m">1</span>) timeout(<span class="m">1000</span>) mort<span class="k"> pro</span> s2017
+    }
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="m">0</span> {
+<span class="k">    use</span> NHANES_demographic_1999_2018,<span class="k"> clear</span>
+<span class="k">    keep in</span> <span class="m">1</span><span class="o">/</span><span class="m">1000</span>
+<span class="k">    count</span>
+<span class="k">    save</span> nhanes_s1000,<span class="k"> replace</span>
+}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -767,6 +795,7 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perplexity-ai">Perplexity.ai</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nhanes">NHANES</a></li>
 </ul>
   </nav></div>
 
