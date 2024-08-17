@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>&lt;no title&gt; &#8212; New Workflow</title>
+    <title>Explanation: &#8212; New Workflow</title>
   
   
   
@@ -181,7 +181,8 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Explanation:</a></li>
 <li class="toctree-l1"><a class="reference internal" href="r.html">R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stata.html">Stata</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jbb_ssh.html">Voice Memos</a></li>
@@ -358,9 +359,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -371,19 +370,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Explanation:</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -1130,6 +1121,94 @@ document.write(`
 <img alt="_images/36b9edc71c4f3576650826ec27874ba25e9ea388313d9adf8b1f266c76af20be.png" src="_images/36b9edc71c4f3576650826ec27874ba25e9ea388313d9adf8b1f266c76af20be.png" />
 </div>
 </div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ADM</span></code>. Update my notes on GitHub and my music repo. My flow diagram is going to start with phonetics, temperament, scales, modes, then quantum, and finally emotion.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPT</span></code>. Your notes and flow diagram are now updated to reflect your starting point with phonetics, progressing through temperament, scales, modes, quantum, and concluding with emotion. If there’s anything specific you’d like to add or refine, feel free to let me know!</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ADM</span></code>. Let’s replace quantum with token or next token.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPT</span></code>. Your flow diagram has been updated to replace “quantum” with “next token.” If there’s anything else you’d like to modify or discuss, I’m here to help!</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ADM</span></code>. Can you provide code for this flow diagram? So the first three are like confluent rivers converging upon node number four. So there’s node one coming from northwest, there is node two coming from west, node three coming from southwest, converging on node four. Then node four continues eastward to node five and node five continues eastward to node six. Give me code.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPT</span></code>. Here’s a Python script using <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and <code class="docutils literal notranslate"><span class="pre">networkx</span></code> to create the flow diagram you described. The nodes and edges are arranged to visually represent the confluence of three streams into a central node, which then continues eastward.</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+
+<span class="c1"># Create a directed graph: Take 1</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+
+<span class="c1"># Define the positions of the nodes</span>
+<span class="n">positions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>   <span class="c1"># Node 1: Northwest</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>   <span class="c1"># Node 2: West</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>  <span class="c1"># Node 3: Southwest</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>    <span class="c1"># Node 4: Confluence</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>    <span class="c1"># Node 5: Eastward from Node 4</span>
+    <span class="mi">6</span><span class="p">:</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>     <span class="c1"># Node 6: Eastward from Node 5</span>
+<span class="p">}</span>
+
+<span class="c1"># Define the edges (connections between nodes)</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>  <span class="c1"># Node 1 to Node 4</span>
+    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>  <span class="c1"># Node 2 to Node 4</span>
+    <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>  <span class="c1"># Node 3 to Node 4</span>
+    <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>  <span class="c1"># Node 4 to Node 5</span>
+    <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>   <span class="c1"># Node 5 to Node 6</span>
+<span class="p">]</span>
+
+<span class="c1"># Add the nodes with their positions</span>
+<span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">:</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">positions</span><span class="p">[</span><span class="n">node</span><span class="p">])</span>
+
+<span class="c1"># Add the edges</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+
+<span class="c1"># Get the positions of nodes for drawing</span>
+<span class="n">node_positions</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_node_attributes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s1">&#39;pos&#39;</span><span class="p">)</span>
+
+<span class="c1"># Draw the nodes</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">node_positions</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+
+<span class="c1"># Draw the edges</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">node_positions</span><span class="p">,</span> <span class="n">edgelist</span><span class="o">=</span><span class="n">edges</span><span class="p">,</span> <span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-|&gt;&#39;</span><span class="p">,</span> <span class="n">arrowsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+<span class="c1"># Draw the labels for each node</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Phonetics&quot;</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;Temperament&quot;</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;Scales&quot;</span><span class="p">,</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="s2">&quot;Modes&quot;</span><span class="p">,</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="s2">&quot;Next Token&quot;</span><span class="p">,</span>
+    <span class="mi">6</span><span class="p">:</span> <span class="s2">&quot;Emotion&quot;</span>
+<span class="p">}</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">node_positions</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">font_weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display the flow diagram</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Flow Diagram&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>  <span class="c1"># Hide axes</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/631cfc7feae1a4ff64fb985dcf2d2c09580ead123ab0d2e409ba386165d932f3.png" src="_images/631cfc7feae1a4ff64fb985dcf2d2c09580ead123ab0d2e409ba386165d932f3.png" />
+</div>
+</div>
+<section id="explanation">
+<h1>Explanation:<a class="headerlink" href="#explanation" title="Permalink to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p><strong>Node Positions</strong>: Nodes 1, 2, and 3 are positioned to the northwest, west, and southwest of the central node (Node 4). Nodes 4, 5, and 6 are arranged in a straight line eastward.</p></li>
+<li><p><strong>Edges</strong>: Directed edges connect Nodes 1, 2, and 3 to Node 4, symbolizing the convergence. Then, Node 4 connects to Node 5, which further connects to Node 6.</p></li>
+<li><p><strong>Node Labels</strong>: The nodes are labeled according to your flow diagram: Phonetics, Temperament, Scales, Modes, Next Token, and Emotion.</p></li>
+</ol>
+<p>Run this code in a Python environment with <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and <code class="docutils literal notranslate"><span class="pre">networkx</span></code> installed, and it will produce a visual flow diagram based on your description.</p>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1185,21 +1264,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>
