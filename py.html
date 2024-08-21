@@ -183,6 +183,8 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Explanation:</a></li>
+
+
 <li class="toctree-l1"><a class="reference internal" href="r.html">R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stata.html">Stata</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jbb_ssh.html">Voice Memos</a></li>
@@ -359,7 +361,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -375,6 +379,17 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Explanation:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Explanation:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-concept">Visualization Concept:</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -1208,6 +1223,226 @@ document.write(`
 <li><p><strong>Node Labels</strong>: The nodes are labeled according to your flow diagram: Phonetics, Temperament, Scales, Modes, Next Token, and Emotion.</p></li>
 </ol>
 <p>Run this code in a Python environment with <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and <code class="docutils literal notranslate"><span class="pre">networkx</span></code> installed, and it will produce a visual flow diagram based on your description.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+
+<span class="c1"># Create a directed graph: Take 1</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+
+<span class="c1"># Define the positions of the nodes</span>
+<span class="n">positions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>   <span class="c1"># Node 1: Northwest</span>
+    <span class="mi">8</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mf">.5</span><span class="p">),</span> <span class="c1">### insertion</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>   <span class="c1"># Node 2: West</span>
+    <span class="mi">10</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="c1">### insertion</span>
+    <span class="mi">9</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mf">.5</span><span class="p">),</span> <span class="c1">### insertion</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>  <span class="c1"># Node 3: Southwest</span>
+    <span class="mi">7</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="c1">### insertion </span>
+    <span class="mi">4</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>    <span class="c1"># Node 4: Confluence</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>    <span class="c1"># Node 5: Eastward from Node 4</span>
+    <span class="mi">6</span><span class="p">:</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>     <span class="c1"># Node 6: Eastward from Node 5</span>
+<span class="p">}</span>
+
+<span class="c1"># Define the edges (connections between nodes)</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>  <span class="c1"># Node 1 to Node 4</span>
+    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>  <span class="c1"># Node 2 to Node 4</span>
+    <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span>  <span class="c1"># Node 3 to Node 4</span>
+    <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>  <span class="c1"># Node 4 to Node 5</span>
+    <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>   <span class="c1"># Node 5 to Node 6</span>
+<span class="p">]</span>
+
+<span class="c1"># Add the nodes with their positions</span>
+<span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">:</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">positions</span><span class="p">[</span><span class="n">node</span><span class="p">])</span>
+
+<span class="c1"># Add the edges</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+
+<span class="c1"># Get the positions of nodes for drawing</span>
+<span class="n">node_positions</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_node_attributes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s1">&#39;pos&#39;</span><span class="p">)</span>
+
+<span class="c1"># Draw the nodes</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">node_positions</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+
+<span class="c1"># Draw the edges</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">node_positions</span><span class="p">,</span> <span class="n">edgelist</span><span class="o">=</span><span class="n">edges</span><span class="p">,</span> <span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-|&gt;&#39;</span><span class="p">,</span> <span class="n">arrowsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+<span class="c1"># Draw the labels for each node</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Phonetics&quot;</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;Temperament&quot;</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;Scales&quot;</span><span class="p">,</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="s2">&quot;Modes&quot;</span><span class="p">,</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="s2">&quot;NexToken&quot;</span><span class="p">,</span>
+    <span class="mi">6</span><span class="p">:</span> <span class="s2">&quot;Emotion&quot;</span>
+<span class="p">}</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">node_positions</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">font_weight</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display the flow diagram</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>  <span class="c1"># Hide axes</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/54fcbca469f754726c8cd4d93e5f29b98ea03427acd02bb4ae7082e00c321265.png" src="_images/54fcbca469f754726c8cd4d93e5f29b98ea03427acd02bb4ae7082e00c321265.png" />
+</div>
+</div>
+<p>What you’re describing is an intricate visualization of information flow across different scales—from subatomic particles to cosmic structures, finance, and social networks—using the concept of photons as carriers of information. This visualization would essentially map nodes (points of information) and edges (connections or flows of information) with arrows representing the directional flow of photons, or in a broader sense, the transfer of energy or information.</p>
+<p>Here’s some Python code using NetworkX and Matplotlib to create a basic visualization of this concept:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Create a directed graph</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+
+<span class="c1"># Add nodes representing different levels (subatomic, atomic, cosmic, financial, social)</span>
+<span class="n">levels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Cosmic&#39;</span><span class="p">,</span> <span class="s1">&#39;Subatomic&#39;</span><span class="p">,</span> <span class="s1">&#39;Atomic&#39;</span><span class="p">,</span> <span class="s1">&#39;Molecular&#39;</span><span class="p">,</span> <span class="s1">&#39;Biochemical&#39;</span><span class="p">,</span> <span class="s1">&#39;Financial&#39;</span><span class="p">,</span> <span class="s1">&#39;Social&#39;</span><span class="p">]</span>
+
+<span class="c1"># Add nodes to the graph</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">levels</span><span class="p">)</span>
+
+<span class="c1"># Add edges to represent the flow of information (photons)</span>
+<span class="c1"># Assuming the flow is directional from more fundamental levels to more complex ones</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;Cosmic&#39;</span><span class="p">,</span> <span class="s1">&#39;Subatomic&#39;</span><span class="p">),</span>
+         <span class="p">(</span><span class="s1">&#39;Subatomic&#39;</span><span class="p">,</span> <span class="s1">&#39;Atomic&#39;</span><span class="p">),</span>
+         <span class="p">(</span><span class="s1">&#39;Atomic&#39;</span><span class="p">,</span> <span class="s1">&#39;Molecular&#39;</span><span class="p">),</span>
+         <span class="p">(</span><span class="s1">&#39;Molecular&#39;</span><span class="p">,</span> <span class="s1">&#39;Biochemical&#39;</span><span class="p">),</span>
+         <span class="p">(</span><span class="s1">&#39;Biochemical&#39;</span><span class="p">,</span> <span class="s1">&#39;Financial&#39;</span><span class="p">),</span>
+         <span class="p">(</span><span class="s1">&#39;Financial&#39;</span><span class="p">,</span> <span class="s1">&#39;Social&#39;</span><span class="p">)]</span>
+
+<span class="c1"># Add edges to the graph</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+
+<span class="c1"># Define positions for the nodes in a circular layout</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+
+<span class="c1"># Set the figure size (width, height)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>  <span class="c1"># Adjust the size as needed</span>
+
+<span class="c1"># Draw the nodes</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">3000</span><span class="p">)</span>
+
+<span class="c1"># Draw the edges with arrows and create space between the arrowhead and the node</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-&gt;&#39;</span><span class="p">,</span> <span class="n">arrowsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span>
+                       <span class="n">connectionstyle</span><span class="o">=</span><span class="s1">&#39;arc3,rad=0.2&#39;</span><span class="p">)</span>  <span class="c1"># Adjust rad for more/less space</span>
+
+<span class="c1"># Draw the labels for the nodes</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">font_weight</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">)</span>
+
+<span class="c1"># Draw the edge labels (optional, to label the flow as &#39;Photon&#39; or &#39;Information&#39;)</span>
+<span class="n">edge_labels</span> <span class="o">=</span> <span class="p">{</span><span class="n">edge</span><span class="p">:</span> <span class="s1">&#39;Photon/Info&#39;</span> <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">}</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_labels</span><span class="p">,</span> <span class="n">font_color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Set the title and display the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Flow of Information Across Levels&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/5000a1f593296bf3c8d72801d491223bbf5a3560f7b50596bb1ce8ff2182c8c9.png" src="_images/5000a1f593296bf3c8d72801d491223bbf5a3560f7b50596bb1ce8ff2182c8c9.png" />
+</div>
+</div>
+</section>
+<section id="id1">
+<h1>Explanation:<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p><strong>Nodes</strong> represent different levels of complexity, from the subatomic to the social.</p></li>
+<li><p><strong>Edges</strong> represent the flow of information, symbolized by photons or analogous concepts, moving from one level to the next.</p></li>
+<li><p>The <strong>circular layout</strong> helps to visualize these connections in a more interconnected way, reflecting how these processes are not linear but cyclical or networked.</p></li>
+</ul>
+</section>
+<section id="visualization-concept">
+<h1>Visualization Concept:<a class="headerlink" href="#visualization-concept" title="Permalink to this heading">#</a></h1>
+<p>This code creates a directed graph where each node represents a different scale of information processing or complexity, and each edge represents the flow of information (or photons) between these levels. The graph is set up to highlight the idea that information flows through various levels, from the most fundamental (subatomic) to the most complex (social networks), with photons or analogous concepts acting as the arrows of information transfer.</p>
+<p>Let me know if you would like to customize this further or explore another aspect!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Create a directed graph</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+
+<span class="c1"># Add nodes representing different levels (subatomic, atomic, cosmic, financial, social)</span>
+<span class="n">levels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;i: Critical</span><span class="se">\n</span><span class="s1"> Gulu</span><span class="se">\n</span><span class="s1"> SOR&#39;</span><span class="p">,</span> <span class="s1">&#39;ii: Antiquarian</span><span class="se">\n</span><span class="s1"> Inferno</span><span class="se">\n</span><span class="s1"> MAGA&#39;</span><span class="p">,</span> <span class="s1">&#39;V7: Monumental</span><span class="se">\n</span><span class="s1"> Purgatorio</span><span class="se">\n</span><span class="s1"> Tech&#39;</span><span class="p">]</span>
+
+<span class="c1"># Add nodes to the graph</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">levels</span><span class="p">)</span>
+
+<span class="c1"># Add edges to represent the flow of information (photons)</span>
+<span class="c1"># Assuming the flow is directional from more fundamental levels to more complex ones</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;ii: Antiquarian</span><span class="se">\n</span><span class="s1"> Inferno</span><span class="se">\n</span><span class="s1"> MAGA&#39;</span><span class="p">,</span> <span class="s1">&#39;V7: Monumental</span><span class="se">\n</span><span class="s1"> Purgatorio</span><span class="se">\n</span><span class="s1"> Tech&#39;</span><span class="p">),</span>
+         <span class="p">(</span><span class="s1">&#39;V7: Monumental</span><span class="se">\n</span><span class="s1"> Purgatorio</span><span class="se">\n</span><span class="s1"> Tech&#39;</span><span class="p">,</span> <span class="s1">&#39;i: Critical</span><span class="se">\n</span><span class="s1"> Gulu</span><span class="se">\n</span><span class="s1"> SOR&#39;</span><span class="p">),]</span>
+
+<span class="c1"># Add edges to the graph</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+
+<span class="c1"># Define positions for the nodes in a circular layout</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+
+<span class="c1"># Set the figure size (width, height)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>  <span class="c1"># Adjust the size as needed</span>
+
+<span class="c1"># Draw the main nodes</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="c1"># Draw the edges with arrows and create space between the arrowhead and the node</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-&gt;&#39;</span><span class="p">,</span> <span class="n">arrowsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span>
+                       <span class="n">connectionstyle</span><span class="o">=</span><span class="s1">&#39;arc3,rad=0.2&#39;</span><span class="p">)</span>  <span class="c1"># Adjust rad for more/less space</span>
+
+<span class="c1"># Add smaller red nodes (photon nodes) exactly on the circular layout</span>
+<span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+    <span class="c1"># Calculate the vector between the two nodes</span>
+    <span class="n">vector</span> <span class="o">=</span> <span class="n">pos</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">-</span> <span class="n">pos</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="c1"># Calculate the midpoint</span>
+    <span class="n">mid_point</span> <span class="o">=</span> <span class="n">pos</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">vector</span>
+    <span class="c1"># Normalize to ensure it&#39;s on the circle</span>
+    <span class="n">radius</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    <span class="n">mid_point_on_circle</span> <span class="o">=</span> <span class="n">mid_point</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">mid_point</span><span class="p">)</span> <span class="o">*</span> <span class="n">radius</span>
+    <span class="c1"># Draw the small red photon node at the midpoint on the circular layout</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">mid_point_on_circle</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mid_point_on_circle</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;lightpink&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="c1"># Draw a small lime green arrow inside the red node to indicate direction</span>
+    <span class="n">arrow_vector</span> <span class="o">=</span> <span class="n">vector</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span>  <span class="c1"># Scale down arrow size</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="n">mid_point_on_circle</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.05</span> <span class="o">*</span> <span class="n">arrow_vector</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+              <span class="n">mid_point_on_circle</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.05</span> <span class="o">*</span> <span class="n">arrow_vector</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+              <span class="n">arrow_vector</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">arrow_vector</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+              <span class="n">head_width</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">head_length</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># Draw the labels for the main nodes</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">font_weight</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add a legend for &quot;Photon/Info&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;lightpink&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Thoughtful Planting&#39;</span><span class="p">)</span>  <span class="c1"># Empty scatter for the legend</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">scatterpoints</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labelspacing</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+
+<span class="c1"># Set the title and display the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Uses of History&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/4b48c5a7ed6c3b7a1a9804b8b6cc8bd915bdbe3174be1cce02a9633191b03e61.png" src="_images/4b48c5a7ed6c3b7a1a9804b8b6cc8bd915bdbe3174be1cce02a9633191b03e61.png" />
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1264,6 +1499,24 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Explanation:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Explanation:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-concept">Visualization Concept:</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
