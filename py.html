@@ -155,8 +155,8 @@
       
     
     
-    <img src="https://appian.com/adobe/dynamicmedia/deliver/dm-aid--daa0272d-833e-430f-8281-20b49ad9c9f4/blog-what-is-workflow.jpg?quality=85&width=1200&preferwebp=true" class="logo__image only-light" alt="New Workflow - Home"/>
-    <script>document.write(`<img src="https://appian.com/adobe/dynamicmedia/deliver/dm-aid--daa0272d-833e-430f-8281-20b49ad9c9f4/blog-what-is-workflow.jpg?quality=85&width=1200&preferwebp=true" class="logo__image only-dark" alt="New Workflow - Home"/>`);</script>
+    <img src="_static/fern_fractal.png" class="logo__image only-light" alt="New Workflow - Home"/>
+    <script>document.write(`<img src="_static/fern_fractal.png" class="logo__image only-dark" alt="New Workflow - Home"/>`);</script>
   
   
 </a></div>
@@ -1441,6 +1441,64 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/4b48c5a7ed6c3b7a1a9804b8b6cc8bd915bdbe3174be1cce02a9633191b03e61.png" src="_images/4b48c5a7ed6c3b7a1a9804b8b6cc8bd915bdbe3174be1cce02a9633191b03e61.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">add_fern_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">scale</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">depth</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span>
+    
+    <span class="n">end</span> <span class="o">=</span> <span class="p">(</span><span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">angle</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">angle</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    
+    <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+    
+    <span class="n">new_angle1</span> <span class="o">=</span> <span class="p">(</span><span class="n">angle</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.6</span> <span class="o">-</span> <span class="n">angle</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">angle</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.4</span> <span class="o">+</span> <span class="n">angle</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.6</span><span class="p">)</span>
+    <span class="n">new_angle2</span> <span class="o">=</span> <span class="p">(</span><span class="n">angle</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.6</span> <span class="o">+</span> <span class="n">angle</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="n">angle</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.4</span> <span class="o">+</span> <span class="n">angle</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.6</span><span class="p">)</span>
+    
+    <span class="n">add_fern_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">depth</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">new_angle1</span><span class="p">,</span> <span class="n">scale</span> <span class="o">*</span> <span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">add_fern_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">depth</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">new_angle2</span><span class="p">,</span> <span class="n">scale</span> <span class="o">*</span> <span class="mf">0.7</span><span class="p">)</span>
+    
+<span class="k">def</span> <span class="nf">create_fern_graph</span><span class="p">(</span><span class="n">depth</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">add_fern_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">scale</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">G</span>
+
+<span class="c1"># Generate the fern graph</span>
+<span class="n">fern_depth</span> <span class="o">=</span> <span class="mi">7</span>  <span class="c1"># Adjust depth for more or fewer branches</span>
+<span class="n">fern_graph</span> <span class="o">=</span> <span class="n">create_fern_graph</span><span class="p">(</span><span class="n">fern_depth</span><span class="p">)</span>
+
+<span class="c1"># Define colors</span>
+<span class="n">leaf_color</span> <span class="o">=</span> <span class="s1">&#39;#5F9E54&#39;</span>  <span class="c1"># A green between lime and cabbage</span>
+<span class="n">stem_color</span> <span class="o">=</span> <span class="s1">&#39;#3B6631&#39;</span>  <span class="c1"># A darker green for the stem</span>
+
+<span class="c1"># Visualize the fern</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="c1"># Draw edges with different colors</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="n">fern_graph</span><span class="o">.</span><span class="n">edges</span><span class="p">()</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">stem_color</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">leaf_color</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">edges</span><span class="p">)]</span>
+
+<span class="n">pos</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">fern_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">()}</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">fern_graph</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="c1"># Save the image</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;/Users/apollo/Documents/rhythm/workflow/fern_fractal.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6e3efdc487371d93e0c3060bb272eb87b38dbf6dc9b41975f1096a17b658416b.png" src="_images/6e3efdc487371d93e0c3060bb272eb87b38dbf6dc9b41975f1096a17b658416b.png" />
 </div>
 </div>
 </section>
