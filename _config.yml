@@ -4,8 +4,7 @@
 title: New Workflow
 author: Zeus
 copyright: "2025"
-logo: https://appian.com/adobe/dynamicmedia/deliver/dm-aid--daa0272d-833e-430f-8281-20b49ad9c9f4/blog-what-is-workflow.jpg?quality=85&width=1200&preferwebp=true
-
+logo: fern_fractal.png
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
